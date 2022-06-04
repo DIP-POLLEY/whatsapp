@@ -1,0 +1,2 @@
+
+double kTabSize = 15;
