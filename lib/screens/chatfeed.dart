@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:whatsapp/screens/camerascreen.dart';
+import 'package:whatsapp/widgets/chatfeedcard.dart';
 
 class ChatFeed extends StatefulWidget {
   const ChatFeed({Key? key}) : super(key: key);
@@ -24,10 +25,19 @@ class _ChatFeedState extends State<ChatFeed> {
         }
       },
       child: ListView(
-        children: [
+        children: const [
+                ChatFeedCard(),
+                ChatFeedCard(),
+                ChatFeedCard(),
+                ChatFeedCard(),
+                ChatFeedCard(),
+                ChatFeedCard(),
+                ChatFeedCard(),
+                ChatFeedCard(),
 
         ],
       ),
     );
   }
 }
+
