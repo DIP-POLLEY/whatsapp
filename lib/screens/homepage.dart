@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:whatsapp/screens/chatfeed.dart';
 import 'package:whatsapp/utilities/constants.dart';
 import 'package:whatsapp/widgets/common_bar.dart';
 
@@ -26,7 +27,7 @@ class _HomePageState extends State<HomePage> {
             ),
             body: const TabBarView(
               children: [
-                Text("data"),
+                ChatFeed(),
                 Text("chck"),
                 Text("calls")
               ],

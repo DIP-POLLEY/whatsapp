@@ -1,7 +1,14 @@
+import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
+import 'package:whatsapp/screens/camerascreen.dart';
 import 'package:whatsapp/screens/homepage.dart';
+import 'package:whatsapp/utilities/constants.dart';
 
-void main() {
+
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+
+  cameras = await availableCameras();
   runApp(const MyApp());
 }
 
@@ -14,7 +21,8 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
      initialRoute: HomePage.id,
       routes: {
-       HomePage.id : (context) => const HomePage(),
+        HomePage.id : (context) => const HomePage(),
+        CameraScreen.id : (context) => const CameraScreen(),
       },
     );
   }
