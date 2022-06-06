@@ -7,14 +7,14 @@ class CommonBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AppBar(
-      title: Text(
+      title: const Text(
         'WhatsApp'
       ),
-      backgroundColor: Color(0xff00a783),
+      backgroundColor: kThemecolor,
       bottom: TabBar(
         indicatorColor: Colors.white,
         indicatorWeight: 2.5,
-        labelStyle: TextStyle(
+        labelStyle: const TextStyle(
           fontWeight: FontWeight.w600,
         ),
         tabs: [
@@ -36,22 +36,22 @@ class CommonBar extends StatelessWidget {
       ),
       actions: [
         Padding(
-            padding: EdgeInsets.only(right: 20.0),
+            padding: const EdgeInsets.only(right: 20.0),
             child: GestureDetector(
               onTap: () {},
-              child: Icon(
+              child: const Icon(
                 Icons.search,
                 size: 26.0,
               ),
             )
         ),
         Padding(
-            padding: EdgeInsets.only(right: 20.0),
+            padding: const EdgeInsets.only(right: 20.0),
             child: GestureDetector(
               onTap: () {
 
               },
-              child: Icon(
+              child: const Icon(
                   Icons.more_vert
               ),
             )

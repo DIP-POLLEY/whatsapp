@@ -22,9 +22,9 @@ class _HomePageState extends State<HomePage> {
                 preferredSize:  Size.fromHeight(
                     MediaQuery.of(context).size.height *2/ kTabSize
                 ),
-                child: CommonBar(),
+                child: const CommonBar(),
             ),
-            body: TabBarView(
+            body: const TabBarView(
               children: [
                 Text("data"),
                 Text("chck"),
