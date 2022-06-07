@@ -37,6 +37,7 @@ dependencies:
   camera: ^0.9.7+1
   path: ^1.8.1
   path_provider: ^2.0.10
+  image_picker: ^0.8.5+3
 
 dev_dependencies:
   flutter_test:
@@ -54,6 +55,8 @@ dev_dependencies:
 
 # The following section is specific to Flutter packages.
 flutter:
+  assets:
+    - assets/
 
   # The following line ensures that the Material Icons font is
   # included with your application, so that you can use the icons in

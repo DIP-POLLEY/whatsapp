@@ -1,3 +1,5 @@
+
+
 import 'package:flutter/material.dart';
 import 'package:whatsapp/screens/camerascreen.dart';
 import 'package:whatsapp/widgets/chatfeedcard.dart';
@@ -10,6 +12,25 @@ class ChatFeed extends StatefulWidget {
 }
 
 class _ChatFeedState extends State<ChatFeed> {
+
+  // final ImagePicker _picker = ImagePicker();
+  // bool _isloading=false;
+  // File _image = new File([],'assets/img.png');
+  //
+  // Future getImageCamera() async {
+  //   final pickedFile = await _picker.getImage(source: ImageSource.camera);
+  //
+  //   setState(() {
+  //     if (pickedFile != null) {
+  //       _isloading=true;
+  //       _image = File([],pickedFile.path);
+  //     } else {
+  //       print('No image selected.');
+  //     }
+  //   });
+  // }
+
+
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
@@ -21,14 +42,22 @@ class _ChatFeedState extends State<ChatFeed> {
           Navigator.pushNamed(
           context, CameraScreen.id
           );
-
+          // getImageCamera();
         }
       },
       child: ListView(
-        children: const [
-                ChatFeedCard(),
-                ChatFeedCard(),
-                ChatFeedCard(),
+        children:  [
+                ChatFeedCard(
+                  unread: true,
+                ),
+                ChatFeedCard(
+                  unread: true,
+                  mute: true,
+                ),
+                ChatFeedCard(
+
+                  mute: true,
+                ),
                 ChatFeedCard(),
                 ChatFeedCard(),
                 ChatFeedCard(),
