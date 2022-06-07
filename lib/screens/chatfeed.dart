@@ -52,12 +52,8 @@ class _ChatFeedState extends State<ChatFeed> {
                 ),
                 ChatFeedCard(
                   unread: true,
-                  mute: true,
                 ),
-                ChatFeedCard(
-
-                  mute: true,
-                ),
+                ChatFeedCard(),
                 ChatFeedCard(),
                 ChatFeedCard(),
                 ChatFeedCard(),
