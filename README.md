@@ -1,6 +1,7 @@
 # whatsapp
 
 Creating a free clone of chatting application
+We are in 2nd week of development
 ## Getting Started
 
 This project is a starting point for a Flutter application.
