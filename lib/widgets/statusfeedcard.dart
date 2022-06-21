@@ -24,6 +24,7 @@ class _StatusfeedcardState extends State<Statusfeedcard> {
         color: Colors.white,
         height: MediaQuery.of(context).size.height *1.5 / kTabSize,
         child: Row(
+          // ignore_for_file: prefer_const_constructors
           children: [
             Expanded(
                 flex: 2,

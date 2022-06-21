@@ -38,6 +38,7 @@ class _ChatFeedState extends State<ChatFeed> {
       onPanUpdate: (details){
         // Swiping in right direction.
         if (details.delta.dx > 0) {
+          // ignore_for_file: avoid_print
           print(details);
           Navigator.pushNamed(
           context, CameraScreen.id

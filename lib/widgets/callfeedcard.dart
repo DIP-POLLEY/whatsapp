@@ -8,6 +8,7 @@ class CallFeedCard extends StatefulWidget {
   final bool connctd;
   final bool calling;
 
+  // ignore: use_key_in_widget_constructors
   const CallFeedCard({this.vid=false,this.connctd=true,this.calling=true}) ;
 
 
@@ -25,6 +26,7 @@ class _CallFeedCardState extends State<CallFeedCard> {
 
 
   @override
+  // ignore: must_call_super
   void initState() {
    _vid = widget.vid;
    _connctd = widget.connctd;
@@ -37,6 +39,7 @@ class _CallFeedCardState extends State<CallFeedCard> {
       color: Colors.white,
       height: MediaQuery.of(context).size.height *1.75 / kTabSize,
       child: Row(
+        // ignore_for_file: prefer_const_constructors
         children: [
           Expanded(
               flex: 2,

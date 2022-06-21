@@ -17,6 +17,7 @@ class _StatusFeedState extends State<StatusFeed> {
       alignment: Alignment.bottomRight,
       children: [
         ListView(
+          // ignore_for_file: prefer_const_constructors
           children: [
             Mystatuscard(),
             Padding(

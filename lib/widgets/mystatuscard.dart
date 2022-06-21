@@ -24,14 +24,15 @@ class _MystatuscardState extends State<Mystatuscard> {
                 child: Stack(
                   alignment: Alignment.bottomRight,
                   children: [
-                    CircleAvatar(
+
+                    const CircleAvatar(
                       radius: 22,
                       backgroundImage: AssetImage("assets/img.png"),
                     ),
                     CircleAvatar(
                       radius: 10,
                       backgroundColor: kThemecolor,
-                      child: Icon(
+                      child: const Icon(
 
                           Icons.add,
                         size: 20,

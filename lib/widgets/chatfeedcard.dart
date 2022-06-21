@@ -17,6 +17,7 @@ class ChatFeedCard extends StatelessWidget {
       color: Colors.white,
       height: MediaQuery.of(context).size.height *1.75 / kTabSize,
       child: Row(
+        // ignore_for_file: prefer_const_constructors
         children: [
           Expanded(
             flex: 2,

@@ -45,19 +45,66 @@ class CommonBar extends StatelessWidget {
               ),
             )
         ),
-        Padding(
-            padding: const EdgeInsets.only(right: 20.0),
-            child: GestureDetector(
-              onTap: () {
-
-              },
-              child: const Icon(
-                  Icons.more_vert
+        PopupMenuButton<int>(
+          // ignore_for_file: prefer_const_constructors
+          onSelected: (item) => onSelected(context,item),
+            itemBuilder: (context)=>[
+              PopupMenuItem(
+                value: 0,
+                child: Text("New group"),
+            ),
+              PopupMenuItem(
+                value: 1,
+                child: Text("New Broadcast"),
               ),
-            )
+              PopupMenuItem(
+                value: 2,
+                child: Text("Linked devices"),
+              ),
+              PopupMenuItem(
+                value: 3,
+                child: Text("Starred messages"),
+              ),
+              PopupMenuItem(
+                value: 4,
+                child: Text("Payments"),
+              ),
+              PopupMenuItem(
+                value: 5,
+                child: Text("Settings"),
+              ),
+          ],
         ),
       ],
 
     );
   }
 }
+
+void onSelected(BuildContext context,int item){
+  // ignore_for_file: avoid_print
+  switch(item){
+    case 0:
+      print("new group");
+      break;
+    case 1:
+      print("new broadcast");
+      break;
+    case 2:
+      print("Linked devices");
+      break;
+    case 3:
+      print("Stared messages");
+      break;
+
+    case 4:
+      print("Payments");
+      break;
+
+    case 5:
+      print("Settings");
+      break;
+
+  }
+}
+

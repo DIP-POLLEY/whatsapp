@@ -33,6 +33,7 @@ class _CameraScreenState extends State<CameraScreen> {
       }
       setState(() {});
     }).catchError((Object e) {
+      // ignore_for_file: avoid_print
       if (e is CameraException) {
         switch (e.code) {
           case 'CameraAccessDenied':
