@@ -66,24 +66,8 @@ class _OtpScreenState extends State<OtpScreen> {
               followingFieldDecoration: pinPutDecoration,
               pinAnimationType: PinAnimationType.fade,
               onSubmit: (pin) async {
-                try {
-                  await FirebaseAuth.instance
-                      .signInWithCredential(PhoneAuthProvider.credential(
-                      verificationId: _verificationCode, smsCode: pin))
-                      .then((value) async {
-                    if (value.user != null) {
-                      Navigator.pushAndRemoveUntil(
-                          context,
-                          MaterialPageRoute(builder: (context) => HomePage()),
-                              (route) => false);
-                    }
-                  });
-                } catch (e) {
-                  FocusScope.of(context).unfocus();
-                  _scaffoldkey.currentState
-                      ?.showSnackBar(SnackBar(content: Text('invalid OTP')));
-                }
-              },
+
+              } ,
             ),
           ),
         ],

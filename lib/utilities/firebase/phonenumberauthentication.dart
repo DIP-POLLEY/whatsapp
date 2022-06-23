@@ -4,6 +4,9 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:whatsapp/screens/homepage.dart';
 
+import '../../screens/otpscreen.dart';
+
+String _verificationCode="";
 Future registerUser(String mobile, BuildContext context) async{
 
   FirebaseAuth _auth = FirebaseAuth.instance;
@@ -25,10 +28,35 @@ Future registerUser(String mobile, BuildContext context) async{
       },
       codeSent: (String verifyId,int? resendcode){
           print(verifyId);
+          _verificationCode = verifyId;
+          Navigator.pushReplacement(context, MaterialPageRoute(
+            builder: (context) => OtpScreen(mobile),
+          ));
       },
       codeAutoRetrievalTimeout: (String id){
 
       }
   );
 }
+
+Future verifyCode(String pin, BuildContext context) async{
+
+  try {
+    await FirebaseAuth.instance
+        .signInWithCredential(PhoneAuthProvider.credential(
+        verificationId: _verificationCode, smsCode: pin))
+        .then((value) async {
+      if (value.user != null) {
+        Navigator.pushAndRemoveUntil(
+            context,
+            MaterialPageRoute(builder: (context) => HomePage()),
+                (route) => false);
+      }
+    });
+  } catch (e) {
+    print(e);
+  }
+
+}
+
 
