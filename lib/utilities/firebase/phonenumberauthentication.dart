@@ -1,6 +1,5 @@
 
 import 'package:flutter/material.dart';
-
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:whatsapp/screens/homepage.dart';
@@ -32,3 +31,4 @@ Future registerUser(String mobile, BuildContext context) async{
       }
   );
 }
+

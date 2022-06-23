@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:whatsapp/utilities/constants.dart';
 import 'package:whatsapp/utilities/firebase/phonenumberauthentication.dart';
 
+import 'otpscreen.dart';
+
 class PhoneScreen extends StatefulWidget {
   const PhoneScreen({Key? key}) : super(key: key);
   static const String id = 'phone';
@@ -81,7 +83,9 @@ class _PhoneScreenState extends State<PhoneScreen> {
                 ),
                 onTap: (){
                   print(phonenumber.text);
-                  registerUser(phonenumber.text, context);
+                  //registerUser(phonenumber.text, context);
+                  Navigator.of(context).push(MaterialPageRoute(
+                      builder: (context) => OtpScreen(phonenumber.text)));
                 },
               )
 

@@ -39,7 +39,7 @@ dependencies:
   path_provider: ^2.0.10
   image_picker: ^0.8.5+3
   story_view: ^0.13.2
-
+  pinput: ^1.2.2
 
   firebase_core: ^1.18.0
   firebase_auth: ^3.3.20
