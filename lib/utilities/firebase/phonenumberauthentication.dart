@@ -2,19 +2,22 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:whatsapp/screens/homepage.dart';
 
 import '../../screens/otpscreen.dart';
 
 String _verificationCode="";
+String callno="";
 Future registerUser(String mobile, BuildContext context) async{
 
   FirebaseAuth _auth = FirebaseAuth.instance;
-
+  callno = mobile;
   _auth.verifyPhoneNumber(
       phoneNumber: "+91$mobile",
       timeout: Duration(seconds: 60),
       verificationCompleted: (AuthCredential authCredential){
+      print("13245789");
         _auth.signInWithCredential(authCredential).then((UserCredential result){
           Navigator.pushReplacement(context, MaterialPageRoute(
               builder: (context) => HomePage(),
@@ -34,7 +37,8 @@ Future registerUser(String mobile, BuildContext context) async{
           ));
       },
       codeAutoRetrievalTimeout: (String id){
-
+        print(id);
+        print("Timeout");
       }
   );
 }
@@ -47,6 +51,8 @@ Future verifyCode(String pin, BuildContext context) async{
         verificationId: _verificationCode, smsCode: pin))
         .then((value) async {
       if (value.user != null) {
+        SharedPreferences preferences1 = await SharedPreferences.getInstance();
+        preferences1.setString('mobile', callno);
         Navigator.pushAndRemoveUntil(
             context,
             MaterialPageRoute(builder: (context) => HomePage()),

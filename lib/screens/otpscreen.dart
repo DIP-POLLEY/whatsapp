@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:pinput/pin_put/pin_put.dart';
 import 'package:whatsapp/utilities/constants.dart';
+import 'package:whatsapp/utilities/firebase/phonenumberauthentication.dart';
 import 'homepage.dart';
 class OtpScreen extends StatefulWidget {
   final String phone;
@@ -66,7 +67,7 @@ class _OtpScreenState extends State<OtpScreen> {
               followingFieldDecoration: pinPutDecoration,
               pinAnimationType: PinAnimationType.fade,
               onSubmit: (pin) async {
-
+                  verifyCode(pin, context);
               } ,
             ),
           ),
