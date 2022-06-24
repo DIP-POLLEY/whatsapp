@@ -16,19 +16,20 @@ class PhoneScreen extends StatefulWidget {
 class _PhoneScreenState extends State<PhoneScreen> {
 
   TextEditingController phonenumber =  TextEditingController();
+  String CountryName="Select Country";
 
   @override
   Widget build(BuildContext context) {
     return SafeArea(
         child: Scaffold(
 
-          body: Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
+          body: ListView(
             children: [
               Padding(
                 padding: const EdgeInsets.only(top: 25),
                 child: Text(
                  'Verify your phone number',
+                  textAlign: TextAlign.center,
                   style: TextStyle(
                     color: kThemecolor,
                     fontSize: 25,
@@ -46,6 +47,28 @@ class _PhoneScreenState extends State<PhoneScreen> {
                   ),
                   textAlign: TextAlign.center,
 
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.only(top:20,left: 35,right: 50 ),
+                child: DropdownButton(
+                  isExpanded: true,
+                  value: CountryName,
+                    items: kCountryList.map((String items) {
+
+                      return DropdownMenuItem(
+                        value: items,
+                          child: Text(
+                            items
+                          )
+                      );
+                    }).toList(),
+                    onChanged: (val){
+                      setState(() {
+                        CountryName = val.toString();
+                        print(kPhoneCode[kCountryList.indexOf(CountryName)]);
+                      });
+                    }
                 ),
               ),
               Padding(
