@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:whatsapp/screens/phonenumber.dart';
 import 'package:whatsapp/utilities/constants.dart';
+
+import 'chatscreen.dart';
 // ignore_for_file: prefer_const_constructors
 class WelcomeScreen extends StatelessWidget {
   const WelcomeScreen({Key? key}) : super(key: key);

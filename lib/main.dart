@@ -3,6 +3,7 @@ import 'package:camera/camera.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:whatsapp/screens/camerascreen.dart';
+import 'package:whatsapp/screens/chatscreen.dart';
 import 'package:whatsapp/screens/homepage.dart';
 import 'package:whatsapp/screens/phonenumber.dart';
 import 'package:whatsapp/screens/splashscreen.dart';
@@ -40,6 +41,7 @@ class _MyAppState extends State<MyApp> {
         PhoneScreen.id : (context) => const PhoneScreen(),
         SplashScreen.id : (context) => const SplashScreen(),
         WelcomeScreen.id : (context) => const WelcomeScreen(),
+        ChatScreen.id : (context) => const ChatScreen(),
       },
     );
   }
