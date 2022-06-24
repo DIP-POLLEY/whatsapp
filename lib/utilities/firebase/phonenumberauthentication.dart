@@ -11,13 +11,13 @@ import '../../screens/otpscreen.dart';
 
 String _verificationCode="";
 String callno="";
-Future registerUser(String mobile, BuildContext context) async{
+Future registerUser(String mobile, String code, BuildContext context) async{
 
   // ignore: no_leading_underscores_for_local_identifiers
   FirebaseAuth _auth = FirebaseAuth.instance;
   callno = mobile;
   _auth.verifyPhoneNumber(
-      phoneNumber: "+91$mobile",
+      phoneNumber: "+$code$mobile",
       timeout: const Duration(seconds: 60),
       verificationCompleted: (AuthCredential authCredential){
       print("13245789");

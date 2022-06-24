@@ -16,18 +16,18 @@ class ChatFeedCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      color: Colors.white,
-      height: MediaQuery.of(context).size.height *1.75 / kTabSize,
-      child: GestureDetector(
-        onTap: (){
-          Navigator.push(
-            context,
-            MaterialPageRoute(
-              builder: (_) => ChatScreen(),
-            ),
-          );
-        },
+    return GestureDetector(
+      onTap: (){
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (_) => ChatScreen(),
+          ),
+        );
+      },
+      child: Container(
+        color: Colors.white,
+        height: MediaQuery.of(context).size.height *1.75 / kTabSize,
         child: Row(
           // ignore_for_file: prefer_const_constructors
           children: [

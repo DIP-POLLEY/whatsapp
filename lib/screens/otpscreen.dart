@@ -26,53 +26,57 @@ class _OtpScreenState extends State<OtpScreen> {
   );
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      key: _scaffoldkey,
-      body: Column(
-        children: [
-          Container(
-            margin: EdgeInsets.only(top: 40),
-            child: Center(
-              child: Text(
-                'Verify +91-${widget.phone}',
-                style: TextStyle(
-                    color: kThemecolor,
-                    fontSize: 25,
-                    fontWeight: FontWeight.w600
+    return Material(
+      child: SafeArea(
+        child: Scaffold( 
+          key: _scaffoldkey,
+          body: Column(
+            children: [
+              Container(
+                margin: EdgeInsets.only(top: 40),
+                child: Center(
+                  child: Text(
+                    'Verify +91-${widget.phone}',
+                    style: TextStyle(
+                        color: kThemecolor,
+                        fontSize: 25,
+                        fontWeight: FontWeight.w600
+                    ),
+                  ),
                 ),
               ),
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.only(top:20,left: 10,right: 10 ),
-            child: Text(
-              'OTP has been sent to +91-${widget.phone}.Please Enter the OTP.',
-              style: TextStyle(
-                fontSize: 15,
-              ),
-              textAlign: TextAlign.center,
+              Padding(
+                padding: const EdgeInsets.only(top:20,left: 10,right: 10 ),
+                child: Text(
+                  'OTP has been sent to +91-${widget.phone}.Please Enter the OTP.',
+                  style: TextStyle(
+                    fontSize: 15,
+                  ),
+                  textAlign: TextAlign.center,
 
-            ),
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.all(30.0),
+                child: PinPut(
+                  fieldsCount: 6,
+                  textStyle: const TextStyle(fontSize: 25.0, color: Colors.white),
+                  eachFieldWidth: 40.0,
+                  eachFieldHeight: 55.0,
+                  focusNode: _pinPutFocusNode,
+                  controller: _pinPutController,
+                  submittedFieldDecoration: pinPutDecoration,
+                  selectedFieldDecoration: pinPutDecoration,
+                  followingFieldDecoration: pinPutDecoration,
+                  pinAnimationType: PinAnimationType.fade,
+                  onSubmit: (pin) async {
+                      verifyCode(pin, context);
+                  } ,
+                ),
+              ),
+            ],
           ),
-          Padding(
-            padding: const EdgeInsets.all(30.0),
-            child: PinPut(
-              fieldsCount: 6,
-              textStyle: const TextStyle(fontSize: 25.0, color: Colors.white),
-              eachFieldWidth: 40.0,
-              eachFieldHeight: 55.0,
-              focusNode: _pinPutFocusNode,
-              controller: _pinPutController,
-              submittedFieldDecoration: pinPutDecoration,
-              selectedFieldDecoration: pinPutDecoration,
-              followingFieldDecoration: pinPutDecoration,
-              pinAnimationType: PinAnimationType.fade,
-              onSubmit: (pin) async {
-                  verifyCode(pin, context);
-              } ,
-            ),
-          ),
-        ],
+        ),
       ),
     );
   }

@@ -17,26 +17,29 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-        child: DefaultTabController(
-          length: 3,
-          child: Scaffold(
-            appBar: PreferredSize(
-                preferredSize:  Size.fromHeight(
-                    MediaQuery.of(context).size.height *2/ kTabSize
-                ),
-                child: const CommonBar(),
-            ),
-            body: const TabBarView(
-              children: [
-                ChatFeed(),
-                StatusFeed(),
-                CallFeed(),
-              ],
+    return Material(
+      color: kThemecolor,
+      child: SafeArea(
+          child: DefaultTabController(
+            length: 3,
+            child: Scaffold(
+              appBar: PreferredSize(
+                  preferredSize:  Size.fromHeight(
+                      MediaQuery.of(context).size.height *2/ kTabSize
+                  ),
+                  child: const CommonBar(),
+              ),
+              body: const TabBarView(
+                children: [
+                  ChatFeed(),
+                  StatusFeed(),
+                  CallFeed(),
+                ],
 
+              ),
             ),
-          ),
-        )
+          )
+      ),
     );
   }
 }
