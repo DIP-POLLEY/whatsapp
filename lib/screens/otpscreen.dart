@@ -1,11 +1,13 @@
+// ignore_for_file: prefer_const_constructors_in_immutables
+
 import 'package:flutter/material.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:pinput/pin_put/pin_put.dart';
 import 'package:whatsapp/utilities/constants.dart';
 import 'package:whatsapp/utilities/firebase/phonenumberauthentication.dart';
-import 'homepage.dart';
+// ignore_for_file: prefer_const_constructors
 class OtpScreen extends StatefulWidget {
   final String phone;
+  // ignore: use_key_in_widget_constructors
   OtpScreen(this.phone);
   @override
   State<OtpScreen> createState() => _OtpScreenState();
@@ -13,7 +15,6 @@ class OtpScreen extends StatefulWidget {
 
 class _OtpScreenState extends State<OtpScreen> {
   final GlobalKey<ScaffoldState> _scaffoldkey = GlobalKey<ScaffoldState>();
-  String _verificationCode="";
   final TextEditingController _pinPutController = TextEditingController();
   final FocusNode _pinPutFocusNode = FocusNode();
   final BoxDecoration pinPutDecoration = BoxDecoration(

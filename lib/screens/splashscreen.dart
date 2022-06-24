@@ -1,11 +1,11 @@
 
-import 'dart:async';
+// ignore_for_file: avoid_print, use_build_context_synchronously, duplicate_ignore
 
+// ignore: unnecessary_import
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:whatsapp/screens/homepage.dart';
-import 'package:whatsapp/screens/phonenumber.dart';
 import 'package:whatsapp/screens/welcomescreen.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -30,7 +30,9 @@ class _SplashScreenState extends State<SplashScreen> {
     SharedPreferences preferences = await SharedPreferences.getInstance();
 
     if(preferences.getString("mobile")!=null)
+    // ignore: duplicate_ignore
     {
+      // ignore: use_build_context_synchronously
       Navigator.pushReplacementNamed(context, HomePage.id);
       print("Loging   directly");
     }
@@ -46,7 +48,9 @@ class _SplashScreenState extends State<SplashScreen> {
   Widget build(BuildContext context) {
     return SafeArea(
         child: Scaffold(
+          // ignore: avoid_unnecessary_containers
           body: Container(
+              // ignore: prefer_const_constructors
               child: Text(
                 "Splash Screen"
             ),

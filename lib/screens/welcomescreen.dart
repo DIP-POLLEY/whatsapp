@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:whatsapp/screens/phonenumber.dart';
 import 'package:whatsapp/utilities/constants.dart';
-
+// ignore_for_file: prefer_const_constructors
 class WelcomeScreen extends StatelessWidget {
   const WelcomeScreen({Key? key}) : super(key: key);
   static const String id = 'welcome';
@@ -24,6 +24,7 @@ class WelcomeScreen extends StatelessWidget {
                   ),
                 ),
               ),
+              // ignore: sized_box_for_whitespace
               Container(
                 height: 290,
                 width: 290,
@@ -40,6 +41,7 @@ class WelcomeScreen extends StatelessWidget {
                     height: 30,
                   ),
                   ElevatedButton(
+                    // ignore: sort_child_properties_last
                     child: Text(
                       "AGREE AND CONTINUE",
                       style: TextStyle(

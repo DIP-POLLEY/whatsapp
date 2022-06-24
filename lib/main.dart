@@ -1,9 +1,7 @@
-import 'dart:ffi';
 
 import 'package:camera/camera.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import 'package:whatsapp/screens/camerascreen.dart';
 import 'package:whatsapp/screens/homepage.dart';
 import 'package:whatsapp/screens/phonenumber.dart';

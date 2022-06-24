@@ -18,6 +18,7 @@ class _StatusFeedState extends State<StatusFeed> {
       children: [
         ListView(
           // ignore_for_file: prefer_const_constructors
+          // ignore: prefer_const_literals_to_create_immutables
           children: [
             Mystatuscard(),
             Padding(

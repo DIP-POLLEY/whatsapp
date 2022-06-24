@@ -4,6 +4,7 @@ import 'package:whatsapp/utilities/constants.dart';
 class ChatFeedCard extends StatelessWidget {
   final bool unread;
   final bool mute;
+   // ignore: prefer_const_constructors_in_immutables, use_key_in_widget_constructors
    ChatFeedCard({
      this.unread=false,
      this.mute=false

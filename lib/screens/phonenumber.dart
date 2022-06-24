@@ -1,9 +1,10 @@
+// ignore_for_file: avoid_print
+
 import 'package:flutter/material.dart';
 import 'package:whatsapp/utilities/constants.dart';
 import 'package:whatsapp/utilities/firebase/phonenumberauthentication.dart';
 
-import 'otpscreen.dart';
-
+// ignore_for_file: prefer_const_constructors
 class PhoneScreen extends StatefulWidget {
   const PhoneScreen({Key? key}) : super(key: key);
   static const String id = 'phone';

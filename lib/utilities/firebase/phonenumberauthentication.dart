@@ -1,6 +1,8 @@
 
+// ignore_for_file: avoid_print
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+// ignore: unnecessary_import
 import 'package:flutter/cupertino.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:whatsapp/screens/homepage.dart';
@@ -11,15 +13,17 @@ String _verificationCode="";
 String callno="";
 Future registerUser(String mobile, BuildContext context) async{
 
+  // ignore: no_leading_underscores_for_local_identifiers
   FirebaseAuth _auth = FirebaseAuth.instance;
   callno = mobile;
   _auth.verifyPhoneNumber(
       phoneNumber: "+91$mobile",
-      timeout: Duration(seconds: 60),
+      timeout: const Duration(seconds: 60),
       verificationCompleted: (AuthCredential authCredential){
       print("13245789");
         _auth.signInWithCredential(authCredential).then((UserCredential result){
           Navigator.pushReplacement(context, MaterialPageRoute(
+              // ignore: prefer_const_constructors
               builder: (context) => HomePage(),
           ));
         }).catchError((e){
@@ -53,9 +57,10 @@ Future verifyCode(String pin, BuildContext context) async{
       if (value.user != null) {
         SharedPreferences preferences1 = await SharedPreferences.getInstance();
         preferences1.setString('mobile', callno);
+        // ignore: use_build_context_synchronously
         Navigator.pushAndRemoveUntil(
             context,
-            MaterialPageRoute(builder: (context) => HomePage()),
+            MaterialPageRoute(builder: (context) => const HomePage()),
                 (route) => false);
       }
     });
