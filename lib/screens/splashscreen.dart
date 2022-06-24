@@ -1,10 +1,12 @@
 
-
+import 'dart:async';
 
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:whatsapp/screens/homepage.dart';
 import 'package:whatsapp/screens/phonenumber.dart';
+import 'package:whatsapp/screens/welcomescreen.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({Key? key}) : super(key: key);
@@ -34,7 +36,7 @@ class _SplashScreenState extends State<SplashScreen> {
     }
     else
       {
-        Navigator.pushReplacementNamed(context, PhoneScreen.id);
+        Navigator.pushReplacementNamed(context, WelcomeScreen.id);
       }
   }
 
@@ -42,10 +44,14 @@ class _SplashScreenState extends State<SplashScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(child: Container(
-      child: Text(
-        "Splash Screen"
-      ),
-    ));
+    return SafeArea(
+        child: Scaffold(
+          body: Container(
+              child: Text(
+                "Splash Screen"
+            ),
+    ),
+        ),
+    );
   }
 }
