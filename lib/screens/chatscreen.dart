@@ -18,6 +18,8 @@ class ChatScreen extends StatefulWidget {
 class _ChatScreenState extends State<ChatScreen> {
   final TextEditingController _controller = TextEditingController();
   bool emojiShowing = false;
+  bool mic = true;
+  bool keyboard = false;
 
   _onEmojiSelected(Emoji emoji) {
     _controller
@@ -114,12 +116,20 @@ class _ChatScreenState extends State<ChatScreen> {
                                         child: GestureDetector(
                                           onTap: (){
                                             setState(() {
+                                              FocusScopeNode currentFocus = FocusScope.of(context);
+                                              if (!currentFocus.hasPrimaryFocus) {
+                                                currentFocus.unfocus();
+                                              }
                                               emojiShowing = !emojiShowing;
+                                              keyboard = !emojiShowing?true:false;
+                                              // print(keyboard);
+//                                              _controller.clear();
                                             });
+
                                           },
-                                          child: Icon(
+                                          child: !emojiShowing?Icon(
                                             Icons.emoji_emotions_outlined
-                                          ),
+                                          ):Icon(Icons.keyboard),
                                         ),
                                       )
                                   ),
@@ -128,12 +138,28 @@ class _ChatScreenState extends State<ChatScreen> {
                                       child: Padding(
                                         padding: const EdgeInsets.only(left: 10),
                                         child: TextField(
+                                          autofocus: keyboard,
                                           controller: _controller,
                                           cursorColor: kThemecolor,
                                           decoration: InputDecoration(
                                             hintText: "Message",
                                             border: InputBorder.none
                                           ),
+                                          onChanged: (val){
+                                            if(val.isNotEmpty)
+                                              {
+                                                setState(() {
+                                                  mic = false;
+                                                });
+
+                                              }
+                                            else
+                                              {
+                                                setState(() {
+                                                  mic = true;
+                                                });
+                                              }
+                                          },
                                         ),
                                       ),
                                     flex: 9,
@@ -146,11 +172,25 @@ class _ChatScreenState extends State<ChatScreen> {
                       Flexible(
                         flex: 1,
                         child: ElevatedButton(
-
+                          style: ButtonStyle(
+                            padding: MaterialStateProperty.all(EdgeInsets.all(0)),
+                            backgroundColor: MaterialStateProperty.all(kThemecolor),
+                              shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                                  RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(50.0),
+                                      side: BorderSide(color: kThemecolor)
+                                  )
+                              )
+                          ),
                           onPressed: (){
-
+                            print(_controller.text);
                           },
-                          child: Icon(Icons.arrow_back),
+                          child: mic?Icon(
+                            Icons.mic
+                          ):
+                          Icon(
+                             Icons.send,
+                          ),
 
                         ),
                       )
