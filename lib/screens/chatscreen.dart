@@ -4,6 +4,7 @@ import 'package:chatbox/chatbox.dart';
 import 'package:emoji_picker_flutter/emoji_picker_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:whatsapp/utilities/firebase/senddata.dart';
+import 'package:whatsapp/utilities/firebase/streammessage.dart';
 
 import '../utilities/constants.dart';
 import '../widgets/chat_commonbar.dart';
@@ -56,42 +57,16 @@ class _ChatScreenState extends State<ChatScreen> {
             children: [
               Flexible(
                 flex: 9,
-                  child: ListView(
-
-                    children: [
-                      ChatBox(
-                        message: "Hi",
-                        recieved: true,
-                        chatBoxColor: Colors.white,
-
-                      ),
-                      ChatBox(
-                        message: "Hi",
-                        recieved: false,
-                        chatBoxColor: Color(0xffd1edb7),
-
-                      ),
-                      ChatBox(
-                        message: "Now we can share images also",
-                        imageURL: "https://picsum.photos/250?image=9",
-                        recieved: false,
-                        chatBoxColor: Color(0xffd1edb7),
-
-                      ),
-                      ChatBox(
-                        message: "Yes Gifs are supported now",
-                        imageURL:"https://docs.flutter.dev/assets/images/dash/dash-fainting.gif",
-                        recieved: true,
-                        chatBoxColor: Colors.white,
-                      ),
-                      ChatBox(
-                        message: "https://pub.dev/packages/chatbox",
-                        recieved: false,
-                        chatBoxColor: Color(0xffd1edb7),
-
-                      ),
-                    ],
+                  child: MessagesStream(
+                      colphn: widget.ph1
                   ),
+                  // child: Column(
+                  //   children: [
+                  //     MessagesStream(
+                  //         colphn: widget.ph1
+                  //     ),
+                  //   ],
+                  // )
               ),
 
               Flexible(
