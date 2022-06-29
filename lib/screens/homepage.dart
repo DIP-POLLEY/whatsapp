@@ -3,6 +3,7 @@ import 'package:whatsapp/screens/callfeed.dart';
 import 'package:whatsapp/screens/chatfeed.dart';
 import 'package:whatsapp/screens/statusfeed.dart';
 import 'package:whatsapp/utilities/constants.dart';
+import 'package:whatsapp/utilities/firebase/senddata.dart';
 import 'package:whatsapp/widgets/common_bar.dart';
 
 
@@ -15,6 +16,12 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+
+  @override
+  void initState() {
+    // adddata();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Material(

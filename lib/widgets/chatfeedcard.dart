@@ -3,16 +3,23 @@ import 'package:whatsapp/utilities/constants.dart';
 
 import '../screens/chatscreen.dart';
 
-class ChatFeedCard extends StatelessWidget {
+class ChatFeedCard extends StatefulWidget {
   final bool unread;
   final bool mute;
+
    // ignore: prefer_const_constructors_in_immutables, use_key_in_widget_constructors
    ChatFeedCard({
      this.unread=false,
      this.mute=false
   }) ;
 
+  @override
+  State<ChatFeedCard> createState() => _ChatFeedCardState();
+}
 
+class _ChatFeedCardState extends State<ChatFeedCard> {
+
+  String phn = "+916204644404";
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +28,10 @@ class ChatFeedCard extends StatelessWidget {
         Navigator.push(
           context,
           MaterialPageRoute(
-            builder: (_) => ChatScreen(),
+            builder: (_) => ChatScreen(
+              ph1: phn,
+
+            ),
           ),
         );
       },
@@ -49,11 +59,11 @@ class ChatFeedCard extends StatelessWidget {
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.start,
                     crossAxisAlignment: CrossAxisAlignment.start,
-                    children: const [
+                    children:  [
                       Padding(
                         padding:  EdgeInsets.all(4.0),
                         child: Text(
-                          "Contact Name",
+                          "$phn",
                           style: TextStyle(
                               fontWeight: FontWeight.bold,
                               fontSize: 18
@@ -92,10 +102,10 @@ class ChatFeedCard extends StatelessWidget {
                     child: Row(
                       children: [
 
-                        mute==true?Icon(
+                        widget.mute==true?Icon(
                             Icons.volume_mute_outlined,
                         ):Text("       "),
-                        unread==true?
+                        widget.unread==true?
                         Container(
                           height: 20,
                             width: 20,

@@ -3,13 +3,16 @@
 import 'package:chatbox/chatbox.dart';
 import 'package:emoji_picker_flutter/emoji_picker_flutter.dart';
 import 'package:flutter/material.dart';
+import 'package:whatsapp/utilities/firebase/senddata.dart';
 
 import '../utilities/constants.dart';
 import '../widgets/chat_commonbar.dart';
 
 class ChatScreen extends StatefulWidget {
   static const String id = 'chat';
-  const ChatScreen({Key? key}) : super(key: key);
+  final String ph1;
+  ChatScreen({required this.ph1});
+
 
   @override
   State<ChatScreen> createState() => _ChatScreenState();
@@ -184,6 +187,9 @@ class _ChatScreenState extends State<ChatScreen> {
                           ),
                           onPressed: (){
                             print(_controller.text);
+                            adddata(_controller.text, widget.ph1);
+                            _controller.clear();
+
                           },
                           child: mic?Icon(
                             Icons.mic
