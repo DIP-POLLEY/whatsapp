@@ -5,7 +5,8 @@ import 'package:whatsapp/screens/statusfeed.dart';
 import 'package:whatsapp/utilities/constants.dart';
 import 'package:whatsapp/utilities/firebase/senddata.dart';
 import 'package:whatsapp/widgets/common_bar.dart';
-
+import 'package:flutter_contacts/contact.dart';
+import 'package:flutter_contacts/flutter_contacts.dart';
 
 
 class HomePage extends StatefulWidget {
@@ -17,9 +18,24 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
 
+  void fetchCnct() async{
+    // List<Contact> contacts = await FlutterContacts.getContacts(
+    //     withProperties: true, withPhoto: true);
+    // print(contacts);
+    if (!await FlutterContacts.requestPermission(readonly: true)) {
+      setState(() => print("Permision nhi mila"));
+    } else {
+      contacts = await FlutterContacts.getContacts(withProperties: true, withPhoto: true);
+      setState(() => cnkts = contacts);
+      print(cnkts?.length);
+      print("Contacts here = ${cnkts![1].phones[0].normalizedNumber}");
+    }
+  }
   @override
   void initState() {
     // adddata();
+    fetchCnct();
+
   }
 
   @override

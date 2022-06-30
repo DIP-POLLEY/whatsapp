@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:whatsapp/utilities/constants.dart';
+import 'package:whatsapp/utilities/firebase/senddata.dart';
+
+import '../screens/welcomescreen.dart';
 
 class CommonBar extends StatelessWidget {
   const CommonBar({Key? key}) : super(key: key);
@@ -73,6 +76,10 @@ class CommonBar extends StatelessWidget {
                 value: 5,
                 child: Text("Settings"),
               ),
+              PopupMenuItem(
+                value: 6,
+                child: Text("LogOut"),
+              ),
           ],
         ),
       ],
@@ -105,6 +112,10 @@ void onSelected(BuildContext context,int item){
       print("Settings");
       break;
 
+    case 6:
+      Logout();
+      Navigator.pushReplacementNamed(context, WelcomeScreen.id);
+      break;
   }
 }
 

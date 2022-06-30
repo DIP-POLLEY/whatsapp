@@ -3,6 +3,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:whatsapp/utilities/constants.dart';
 
 final _firestore = FirebaseFirestore.instance;
+FirebaseAuth _auth = FirebaseAuth.instance;
 
 void adddata(String message, String phn) async
 {
@@ -15,5 +16,20 @@ void adddata(String message, String phn) async
     'sender': kUser,
     'timestamp':FieldValue.serverTimestamp(),
   });
+
+}
+
+void addUsers(String Number) async{
+  _firestore.collection('users').add({
+    'Phone_Number': Number,
+    'timestamp':FieldValue.serverTimestamp(),
+  });
+}
+
+
+void Logout()
+{
+
+  _auth.signOut();
 
 }

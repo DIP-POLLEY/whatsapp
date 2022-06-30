@@ -3,7 +3,7 @@ import 'package:camera/camera.dart';
 import 'package:flutter_contacts/contact.dart';
 
 late List<CameraDescription> cameras;
-
+List<Contact>? cnkts;
 String kUser= "";
 
 double kTabSize = 15;
