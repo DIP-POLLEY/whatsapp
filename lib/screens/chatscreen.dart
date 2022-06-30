@@ -60,13 +60,7 @@ class _ChatScreenState extends State<ChatScreen> {
                   child: MessagesStream(
                       colphn: widget.ph1
                   ),
-                  // child: Column(
-                  //   children: [
-                  //     MessagesStream(
-                  //         colphn: widget.ph1
-                  //     ),
-                  //   ],
-                  // )
+
               ),
 
               Flexible(
@@ -164,6 +158,7 @@ class _ChatScreenState extends State<ChatScreen> {
                             print(_controller.text);
                             adddata(_controller.text, widget.ph1);
                             _controller.clear();
+                            setState(() {});
 
                           },
                           child: mic?Icon(

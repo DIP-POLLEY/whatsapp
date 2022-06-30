@@ -6,6 +6,7 @@ import 'package:whatsapp/utilities/constants.dart';
 
 final _firestore = FirebaseFirestore.instance;
 
+
 class MessagesStream extends StatefulWidget {
   MessagesStream({required this.colphn});
   final String colphn;
@@ -15,10 +16,15 @@ class MessagesStream extends StatefulWidget {
 }
 
 class _MessagesStreamState extends State<MessagesStream> {
+  ScrollController _scrollController = ScrollController();
+
+  _scrollToBottom() {
+    _scrollController.jumpTo(_scrollController.position.maxScrollExtent);
+  }
   @override
   Widget build(BuildContext context) {
     return StreamBuilder<QuerySnapshot>(
-      stream: _firestore.collection('users').doc("+917003814954").collection(widget.colphn).orderBy('timestamp', descending: false).snapshots(),
+      stream: _firestore.collection('users').doc(kUser).collection(widget.colphn).orderBy('timestamp', descending: false).snapshots(),
       builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
         if (!snapshot.hasData) {
           return Center(
@@ -27,10 +33,13 @@ class _MessagesStreamState extends State<MessagesStream> {
             ),
           );
         }
+        WidgetsBinding.instance.addPostFrameCallback((_) => _scrollToBottom());
         return ListView(
+          controller: _scrollController,
         children: snapshot.data!.docs.map((DocumentSnapshot document) {
           Map<String, dynamic> data = document.data()! as Map<String, dynamic>;
-          bool cond = data["sender"]=="+917003814954";
+
+          bool cond = data["sender"]==kUser;
 
           return ChatBox(
               recieved: !cond,
@@ -38,7 +47,8 @@ class _MessagesStreamState extends State<MessagesStream> {
               message: data["text"],
           );
 
-        }).toList(),
+        }
+        ).toList(),
         );
 
 

@@ -6,6 +6,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:whatsapp/screens/homepage.dart';
+import 'package:whatsapp/utilities/constants.dart';
 
 import '../../screens/otpscreen.dart';
 
@@ -15,12 +16,12 @@ Future registerUser(String mobile, String code, BuildContext context) async{
 
   // ignore: no_leading_underscores_for_local_identifiers
   FirebaseAuth _auth = FirebaseAuth.instance;
-  callno = mobile;
+  callno = "+$code$mobile";
+  kUser = callno;
   _auth.verifyPhoneNumber(
       phoneNumber: "+$code$mobile",
       timeout: const Duration(seconds: 60),
       verificationCompleted: (AuthCredential authCredential){
-      print("13245789");
         _auth.signInWithCredential(authCredential).then((UserCredential result){
           Navigator.pushReplacement(context, MaterialPageRoute(
               // ignore: prefer_const_constructors

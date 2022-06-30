@@ -7,6 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:whatsapp/screens/homepage.dart';
 import 'package:whatsapp/screens/welcomescreen.dart';
+import 'package:whatsapp/utilities/constants.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({Key? key}) : super(key: key);
@@ -24,14 +25,17 @@ class _SplashScreenState extends State<SplashScreen> {
     super.initState();
     checklogin();
   }
+
   void checklogin() async
   {
     WidgetsFlutterBinding.ensureInitialized();
     SharedPreferences preferences = await SharedPreferences.getInstance();
-
+    String mob = preferences.getString("mobile").toString();
     if(preferences.getString("mobile")!=null)
     // ignore: duplicate_ignore
     {
+      setState(() { kUser = mob; });
+
       // ignore: use_build_context_synchronously
       Navigator.pushReplacementNamed(context, HomePage.id);
       print("Loging   directly");
