@@ -41,19 +41,34 @@ class _getChatgroupState extends State<getChatgroup> {
           }
           else
           {
-            return ListView(
-              children: snapshot.data!.docs.map((DocumentSnapshot document) {
-                Map<String, dynamic> data = document.data()! as Map<String, dynamic>;
+            var details = snapshot.data!.docs;
+            for(var detl in details){
 
+              Map<String, dynamic> num = detl.data()! as Map<String, dynamic>;
 
-                return ChatFeedCard(
-                    sender: data["Phone_Number"],
-                );
+              print(num["Phone_Number"]);
+              var s1 = num["Phone_Number"];
+              for(var i=0;i<contactlen;i++)
+                {
+                  //
+                    if(s1.toString().compareTo(cnkts![i].phones[0].normalizedNumber) == 0)
+                      {
+                        print(i);
+                        final wdget = ChatFeedCard(sender: cnkts![i].displayName);
+                        cardkeeper.add(wdget);
 
-              }
-              ).toList(),
+                      }
+                }
+            }
+            return cardkeeper.length==0?Column(
+              children: [
+                Text("Loading")
+              ],
+            ):Column(
+              children: cardkeeper,
             );
-          };
+
+          }
         }
         );
   }

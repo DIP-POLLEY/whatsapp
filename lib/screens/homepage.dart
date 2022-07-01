@@ -28,7 +28,8 @@ class _HomePageState extends State<HomePage> {
     } else {
       contacts = await FlutterContacts.getContacts(withProperties: true, withPhoto: true);
       setState(() => cnkts = contacts);
-      print(cnkts![0]);
+      contactlen = cnkts?.length;
+      //print(cnkts![0]);
       //print("Contacts here = ${cnkts![1].phones[0].normalizedNumber}");
       //getData();
     }
