@@ -4,7 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:whatsapp/utilities/constants.dart';
 
 class ChatCommonBar extends StatelessWidget {
-  const ChatCommonBar({Key? key}) : super(key: key);
+  final String chatName;
+  ChatCommonBar({required this.chatName});
 
   @override
   Widget build(BuildContext context) {
@@ -25,7 +26,7 @@ class ChatCommonBar extends StatelessWidget {
               backgroundImage: AssetImage("assets/img.png"),
             ),
           ),
-          Text("Person"),
+          Text("$chatName"),
         ],
       ),
       backgroundColor: kThemecolor,

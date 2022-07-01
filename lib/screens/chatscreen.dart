@@ -50,7 +50,7 @@ class _ChatScreenState extends State<ChatScreen> {
             preferredSize:  Size.fromHeight(
                 MediaQuery.of(context).size.height *1.1/ kTabSize
             ),
-            child: const ChatCommonBar(),
+            child: ChatCommonBar(chatName: widget.ph1),
           ),
           body: Column(
             mainAxisAlignment: MainAxisAlignment.end,
