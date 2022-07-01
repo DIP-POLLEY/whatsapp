@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:whatsapp/screens/camerascreen.dart';
+import 'package:whatsapp/utilities/firebase/chatroomStream.dart';
 import 'package:whatsapp/widgets/chatfeedcard.dart';
 
 class ChatFeed extends StatefulWidget {
@@ -46,23 +47,7 @@ class _ChatFeedState extends State<ChatFeed> {
           // getImageCamera();
         }
       },
-      child: ListView(
-        children:  [
-                ChatFeedCard(
-                  unread: true,
-                ),
-                ChatFeedCard(
-                  unread: true,
-                ),
-                ChatFeedCard(),
-                ChatFeedCard(),
-                ChatFeedCard(),
-                ChatFeedCard(),
-                ChatFeedCard(),
-                ChatFeedCard(),
-
-        ],
-      ),
+      child: getChatgroup(),
     );
   }
 }

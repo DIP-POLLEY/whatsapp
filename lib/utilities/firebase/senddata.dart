@@ -11,19 +11,36 @@ void adddata(String message, String phn) async
   String phone = (firebaseUser?.phoneNumber).toString();
   print("Current user = $phone");
   kUser = phone;
-  _firestore.collection('users').doc(phone).collection(phn).add({
+  _firestore.collection('chatroom').doc(phone).collection(phn).add({
     'text': message,
     'sender': kUser,
     'timestamp':FieldValue.serverTimestamp(),
   });
 
 }
+Future<bool> phoneAlready(String Number) async
+{
+  final QuerySnapshot result = await _firestore.collection('users').where('Phone_Number',isEqualTo: Number).get();
+  final List<DocumentSnapshot> documents = result.docs;
 
+  return documents.length>0;
+}
 void addUsers(String Number) async{
-  _firestore.collection('users').add({
-    'Phone_Number': Number,
-    'timestamp':FieldValue.serverTimestamp(),
-  });
+
+  Map<String,dynamic>data = {};
+  data.addAll(
+      {'Phone_Number': Number,
+        'timestamp': FieldValue.serverTimestamp(),}
+  );
+  if(await phoneAlready(Number) == false)
+    {
+      _firestore.collection('users').doc(Number).set(data);
+    }
+  else
+    {
+      _firestore.collection('users').doc(Number).update(data);
+    }
+
 }
 
 

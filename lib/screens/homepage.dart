@@ -3,6 +3,7 @@ import 'package:whatsapp/screens/callfeed.dart';
 import 'package:whatsapp/screens/chatfeed.dart';
 import 'package:whatsapp/screens/statusfeed.dart';
 import 'package:whatsapp/utilities/constants.dart';
+import 'package:whatsapp/utilities/firebase/chatroomStream.dart';
 import 'package:whatsapp/utilities/firebase/senddata.dart';
 import 'package:whatsapp/widgets/common_bar.dart';
 import 'package:flutter_contacts/contact.dart';
@@ -27,14 +28,16 @@ class _HomePageState extends State<HomePage> {
     } else {
       contacts = await FlutterContacts.getContacts(withProperties: true, withPhoto: true);
       setState(() => cnkts = contacts);
-      print(cnkts?.length);
-      print("Contacts here = ${cnkts![1].phones[0].normalizedNumber}");
+      print(cnkts![0]);
+      //print("Contacts here = ${cnkts![1].phones[0].normalizedNumber}");
+      //getData();
     }
   }
   @override
   void initState() {
     // adddata();
     fetchCnct();
+
 
   }
 

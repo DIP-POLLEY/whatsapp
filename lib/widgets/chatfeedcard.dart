@@ -6,11 +6,13 @@ import '../screens/chatscreen.dart';
 class ChatFeedCard extends StatefulWidget {
   final bool unread;
   final bool mute;
+  final String sender;
 
    // ignore: prefer_const_constructors_in_immutables, use_key_in_widget_constructors
    ChatFeedCard({
      this.unread=false,
-     this.mute=false
+     this.mute=false,
+     required this.sender
   }) ;
 
   @override
@@ -19,7 +21,7 @@ class ChatFeedCard extends StatefulWidget {
 
 class _ChatFeedCardState extends State<ChatFeedCard> {
 
-  String phn = "+916204644404";
+
 
   @override
   Widget build(BuildContext context) {
@@ -29,7 +31,7 @@ class _ChatFeedCardState extends State<ChatFeedCard> {
           context,
           MaterialPageRoute(
             builder: (_) => ChatScreen(
-              ph1: phn,
+              ph1: widget.sender,
 
             ),
           ),
@@ -63,7 +65,7 @@ class _ChatFeedCardState extends State<ChatFeedCard> {
                       Padding(
                         padding:  EdgeInsets.all(4.0),
                         child: Text(
-                          "$phn",
+                          "${widget.sender}",
                           style: TextStyle(
                               fontWeight: FontWeight.bold,
                               fontSize: 18
