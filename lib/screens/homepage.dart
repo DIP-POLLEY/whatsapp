@@ -19,28 +19,7 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
 
-  void fetchCnct() async{
-    // List<Contact> contacts = await FlutterContacts.getContacts(
-    //     withProperties: true, withPhoto: true);
-    // print(contacts);
-    if (!await FlutterContacts.requestPermission(readonly: true)) {
-      setState(() => print("Permision nhi mila"));
-    } else {
-      contacts = await FlutterContacts.getContacts(withProperties: true, withPhoto: true);
-      setState(() => cnkts = contacts);
-      contactlen = cnkts?.length;
-      //print(cnkts![0]);
-      //print("Contacts here = ${cnkts![1].phones[0].normalizedNumber}");
-      //getData();
-    }
-  }
-  @override
-  void initState() {
-    // adddata();
-    fetchCnct();
 
-
-  }
 
   @override
   Widget build(BuildContext context) {

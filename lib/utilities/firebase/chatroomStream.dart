@@ -35,16 +35,17 @@ class _getChatgroupState extends State<getChatgroup> {
   Widget build(BuildContext context) {
     return new StreamBuilder<QuerySnapshot>(
         stream: _firestore.collection("users").snapshots(),
-        builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
+        builder: (context, snapshot) {
           if (!snapshot.hasData) {
             return new Text("There is no chat");
           }
-          else
-          {
+
+
+           List<ChatFeedCard> cardkeeper = [];
             var details = snapshot.data!.docs;
             for(var detl in details){
-
-              Map<String, dynamic> num = detl.data()! as Map<String, dynamic>;
+              var num={};
+              num = detl.data()! as Map<String, dynamic>;
 
               print(num["Phone_Number"]);
               var s1 = num["Phone_Number"];
@@ -68,7 +69,7 @@ class _getChatgroupState extends State<getChatgroup> {
               children: cardkeeper,
             );
 
-          }
+
         }
         );
   }

@@ -4,6 +4,7 @@
 // ignore: unnecessary_import
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_contacts/flutter_contacts.dart';
 
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:whatsapp/screens/homepage.dart';
@@ -21,14 +22,37 @@ class SplashScreen extends StatefulWidget {
 class _SplashScreenState extends State<SplashScreen> {
 
 
+  void fetchCnct() async{
+    // List<Contact> contacts = await FlutterContacts.getContacts(
+    //     withProperties: true, withPhoto: true);
+    // print(contacts);
+    if (!await FlutterContacts.requestPermission(readonly: true)) {
+      setState(() => print("Permision nhi mila"));
+    } else {
+      contacts = await FlutterContacts.getContacts(withProperties: true, withPhoto: true);
+      setState(() => cnkts = contacts);
+      contactlen = cnkts?.length;
+      print(cnkts![0]);
+      print("Contacts here = ${cnkts![1].phones[0].normalizedNumber}");
+      checklogin();
 
+      //getData();
+    }
+  }
+  // @override
+  // void initState() {
+  //   // adddata();
+  //   fetchCnct();
+  //
+  //
+  // }
 
 
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
-    checklogin();
+    fetchCnct();
 
   }
 

@@ -21,4 +21,6 @@ List<String> kPhoneCode = [
 
 var contactlen;
 
-List<ChatFeedCard> cardkeeper = [];
+
+
+Map<String, dynamic> kNum = {"":""};
