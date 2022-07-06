@@ -11,7 +11,7 @@ void adddata(String message, String phn) async
   String phone = (firebaseUser?.phoneNumber).toString();
   print("Current user = $phone");
   kUser = phone;
-  _firestore.collection('chatroom').doc(phone+phn).collection("chats").add({
+  _firestore.collection('chatroom').doc((int.parse(phone)+int.parse(phn)).toString()).collection("chats").add({
     'text': message,
     'sender': kUser,
     'timestamp':FieldValue.serverTimestamp(),
