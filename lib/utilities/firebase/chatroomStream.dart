@@ -55,7 +55,11 @@ class _getChatgroupState extends State<getChatgroup> {
                     if(s1.toString().compareTo(cnkts![i].phones[0].normalizedNumber) == 0)
                       {
                         print(i);
-                        final wdget = ChatFeedCard(sender: cnkts![i].displayName);
+                        final wdget = ChatFeedCard(
+                            sender: cnkts![i].displayName,
+                          sendernumber: cnkts![i].phones[0].normalizedNumber,
+
+                        );
                         cardkeeper.add(wdget);
 
                       }

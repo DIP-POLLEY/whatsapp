@@ -24,7 +24,7 @@ class _MessagesStreamState extends State<MessagesStream> {
   @override
   Widget build(BuildContext context) {
     return StreamBuilder<QuerySnapshot>(
-      stream: _firestore.collection('chatroom').doc(kUser).collection(widget.colphn).orderBy('timestamp', descending: false).snapshots(),
+      stream: _firestore.collection('chatroom').doc(kUser+widget.colphn).collection("chats").orderBy('timestamp', descending: false).snapshots(),
       builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
         if (!snapshot.hasData) {
           return Center(

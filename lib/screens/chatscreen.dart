@@ -12,7 +12,8 @@ import '../widgets/chat_commonbar.dart';
 class ChatScreen extends StatefulWidget {
   static const String id = 'chat';
   final String ph1;
-  ChatScreen({required this.ph1});
+  final String senderphn;
+  ChatScreen({required this.ph1,required this.senderphn});
 
 
   @override
@@ -58,7 +59,7 @@ class _ChatScreenState extends State<ChatScreen> {
               Flexible(
                 flex: 9,
                   child: MessagesStream(
-                      colphn: widget.ph1
+                      colphn: widget.senderphn,
                   ),
 
               ),
@@ -156,7 +157,7 @@ class _ChatScreenState extends State<ChatScreen> {
                           ),
                           onPressed: (){
                             print(_controller.text);
-                            adddata(_controller.text, widget.ph1);
+                            adddata(_controller.text, widget.senderphn);
                             _controller.clear();
                             setState(() {});
 

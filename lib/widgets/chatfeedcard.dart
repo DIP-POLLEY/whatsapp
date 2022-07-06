@@ -7,12 +7,14 @@ class ChatFeedCard extends StatefulWidget {
   final bool unread;
   final bool mute;
   final String sender;
+  final String sendernumber;
 
    // ignore: prefer_const_constructors_in_immutables, use_key_in_widget_constructors
    ChatFeedCard({
      this.unread=false,
      this.mute=false,
-     required this.sender
+     required this.sender,
+     required this.sendernumber,
   }) ;
 
   @override
@@ -32,6 +34,7 @@ class _ChatFeedCardState extends State<ChatFeedCard> {
           MaterialPageRoute(
             builder: (_) => ChatScreen(
               ph1: widget.sender,
+              senderphn: widget.sendernumber,
 
             ),
           ),
