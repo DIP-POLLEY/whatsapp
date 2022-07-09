@@ -13,9 +13,7 @@ import 'package:whatsapp/utilities/constants.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp(
-
-  );
+  await Firebase.initializeApp(  );
   cameras = await availableCameras();
   runApp(const MyApp());
 }

@@ -2,11 +2,13 @@
 import 'dart:io';
 
 import 'package:emoji_picker_flutter/emoji_picker_flutter.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import '../utilities/constants.dart';
 import '../utilities/firebase/senddata.dart';
+import '../utilities/firebase/uploadfiles.dart';
 
 class Sendimage extends StatefulWidget {
   final File? image;
@@ -140,9 +142,14 @@ class _SendimageState extends State<Sendimage> {
                                   )
                               )
                           ),
-                          onPressed: (){
+                          onPressed: ()async{
                             //print(_controller.text);
+                            await Uploadtofirebase(
+                              widget.image,
+                              widget.senderphn
+                            );
                             Navigator.pop(context);
+
                             //adddata(_controller.text, widget.senderphn);
                             _controller.clear();
 
