@@ -1,11 +1,16 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
 
+import 'dart:io';
+
 import 'package:chatbox/chatbox.dart';
 import 'package:emoji_picker_flutter/emoji_picker_flutter.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:image_picker/image_picker.dart';
+import 'package:whatsapp/screens/sendimage.dart';
 import 'package:whatsapp/utilities/firebase/senddata.dart';
 import 'package:whatsapp/utilities/firebase/streammessage.dart';
-
+import 'package:whatsapp/widgets/attachments.dart';
 import '../utilities/constants.dart';
 import '../widgets/chat_commonbar.dart';
 
@@ -25,6 +30,7 @@ class _ChatScreenState extends State<ChatScreen> {
   bool emojiShowing = false;
   bool mic = true;
   bool keyboard = false;
+  bool attachment = false;
 
   _onEmojiSelected(Emoji emoji) {
     _controller
@@ -39,6 +45,35 @@ class _ChatScreenState extends State<ChatScreen> {
       ..selection = TextSelection.fromPosition(
           TextPosition(offset: _controller.text.length));
   }
+
+  File? image;
+
+  Future pickImage() async
+  {
+    try{
+      final img  = await ImagePicker().pickImage(source: ImageSource.gallery);
+      if(img == null) return;
+
+      final imageTemp = File(img.path);
+      this.image = imageTemp;
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (_) => Sendimage(
+            image: image,
+            senderphn: widget.senderphn,
+          ),
+        ),
+      );
+
+    }on PlatformException catch (e){
+      print(e);
+    }
+
+  }
+
+
+
 
   @override
   Widget build(BuildContext context) {
@@ -135,7 +170,20 @@ class _ChatScreenState extends State<ChatScreen> {
                                           },
                                         ),
                                       ),
-                                    flex: 9,
+                                    flex: 8,
+                                  ),
+                                  Flexible(
+                                    flex: 1,
+                                      child: GestureDetector(
+                                        onTap: (){
+                                          setState(() {
+                                            attachment = !attachment;
+                                          });
+                                        },
+                                        child: Icon(
+                                          Icons.attach_file_sharp,
+                                        ),
+                                      )
                                   )
                                 ],
                               ),
@@ -215,6 +263,94 @@ class _ChatScreenState extends State<ChatScreen> {
                           buttonMode: ButtonMode.MATERIAL)),
                 ),
               ),
+              Offstage(
+                offstage: !attachment,
+                child: Padding(
+                  padding: const EdgeInsets.only(top: 2),
+                  child: Container(
+                    color: Colors.white,
+                    height: MediaQuery.of(context).size.height /4,
+                    child: Column(
+                      children: [
+                        SizedBox(
+                          height: 10,
+                        ),
+                        Row(
+                          children: [
+                            
+                            Expanded(
+                              flex: 1,
+                              child: AttachButton(
+                                name: "Document",
+                                clr: Colors.indigo,
+                                icn: Icons.insert_drive_file_sharp,
+                                onpres: (){},
+                              ),
+                            ),
+                            Expanded(
+                              flex: 1,
+                              child: AttachButton(
+                                name: "Camera",
+                                clr: Colors.pinkAccent,
+                                icn: Icons.camera_alt,
+                                onpres: (){},
+                              ),
+                            ),
+                            Expanded(
+                              flex: 1,
+                              child: AttachButton(
+                                name: "Gallery",
+                                clr: Colors.purpleAccent,
+                                icn: Icons.image,
+                                onpres: (){
+                                  pickImage();
+                                },
+                              ),
+                            )
+
+                          ],
+                        ),
+                        SizedBox(
+                          height: 10,
+                        ),
+                        Row(
+                          children: [
+
+                            Expanded(
+                              flex: 1,
+                              child: AttachButton(
+                                name: "Audio",
+                                clr: Colors.amber,
+                                icn: Icons.headphones,
+                                onpres: (){},
+                              ),
+                            ),
+                            Expanded(
+                              flex: 1,
+                              child: AttachButton(
+                                name: "Location",
+                                clr: Colors.green,
+                                icn: Icons.location_on,
+                                onpres: (){},
+                              ),
+                            ),
+                            Expanded(
+                              flex: 1,
+                              child: AttachButton(
+                                name: "Contact",
+                                clr: Colors.cyan,
+                                icn: Icons.person,
+                                onpres: (){},
+                              ),
+                            )
+
+                          ],
+                        )
+                      ],
+                    ),
+                  ),
+                ),
+              )
             ],
           ),
         ),
@@ -222,6 +358,9 @@ class _ChatScreenState extends State<ChatScreen> {
     );
   }
 }
+
+
+
 
 
 
