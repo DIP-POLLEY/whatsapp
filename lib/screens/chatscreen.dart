@@ -4,6 +4,7 @@ import 'dart:io';
 
 import 'package:chatbox/chatbox.dart';
 import 'package:emoji_picker_flutter/emoji_picker_flutter.dart';
+import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:image_picker/image_picker.dart';
@@ -48,10 +49,10 @@ class _ChatScreenState extends State<ChatScreen> {
 
   File? image;
 
-  Future pickImage() async
+  Future pickImage(ImageSource source) async
   {
     try{
-      final img  = await ImagePicker().pickImage(source: ImageSource.gallery);
+      final img  = await ImagePicker().pickImage(source: source);
       if(img == null) return;
 
       final imageTemp = File(img.path);
@@ -65,6 +66,22 @@ class _ChatScreenState extends State<ChatScreen> {
           ),
         ),
       );
+
+    }on PlatformException catch (e){
+      print(e);
+    }
+
+  }
+
+  Future pickfile() async
+  {
+    try{
+      final result = await FilePicker.platform.pickFiles();
+      if(result.toString() == "") return;
+
+      final fileTemp = result?.files.first;
+      print(fileTemp?.path);
+
 
     }on PlatformException catch (e){
       print(e);
@@ -97,6 +114,9 @@ class _ChatScreenState extends State<ChatScreen> {
                       colphn: widget.senderphn,
                   ),
 
+              ),
+              SizedBox(
+                height: 5,
               ),
 
               Flexible(
@@ -284,7 +304,9 @@ class _ChatScreenState extends State<ChatScreen> {
                                 name: "Document",
                                 clr: Colors.indigo,
                                 icn: Icons.insert_drive_file_sharp,
-                                onpres: (){},
+                                onpres: (){
+                                  pickfile();
+                                },
                               ),
                             ),
                             Expanded(
@@ -293,7 +315,9 @@ class _ChatScreenState extends State<ChatScreen> {
                                 name: "Camera",
                                 clr: Colors.pinkAccent,
                                 icn: Icons.camera_alt,
-                                onpres: (){},
+                                onpres: (){
+                                  pickImage(ImageSource.camera);
+                                },
                               ),
                             ),
                             Expanded(
@@ -303,7 +327,7 @@ class _ChatScreenState extends State<ChatScreen> {
                                 clr: Colors.purpleAccent,
                                 icn: Icons.image,
                                 onpres: (){
-                                  pickImage();
+                                  pickImage(ImageSource.gallery);
                                 },
                               ),
                             )
