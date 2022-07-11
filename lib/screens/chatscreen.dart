@@ -13,6 +13,7 @@ import 'package:whatsapp/utilities/firebase/senddata.dart';
 import 'package:whatsapp/utilities/firebase/streammessage.dart';
 import 'package:whatsapp/widgets/attachments.dart';
 import '../utilities/constants.dart';
+import '../utilities/firebase/uploadfiles.dart';
 import '../widgets/chat_commonbar.dart';
 
 class ChatScreen extends StatefulWidget {
@@ -81,6 +82,7 @@ class _ChatScreenState extends State<ChatScreen> {
 
       final fileTemp = result?.files.first;
       print(fileTemp?.path);
+      UploadFilesFirebase(fileTemp,widget.senderphn);
 
 
     }on PlatformException catch (e){

@@ -44,6 +44,8 @@ class _MessagesStreamState extends State<MessagesStream> {
         bool cond = data["sender"]==kUser;
         String img = data["text"].toString();
         int len = img.length;
+        var time = data["timestamp"];
+        String tm = "${time.toDate().hour}:${time.toDate().minute}";
         // bool imgtxt = img.substring(0,1) == "£";
         Widget wgt;
 
@@ -55,6 +57,16 @@ class _MessagesStreamState extends State<MessagesStream> {
                   recieved: !cond,
                   chatBoxColor: !cond?Colors.white:Color(0xffd1edb7),
                   imageURL: img.substring(1,len),
+                  time: tm,
+                );
+              }
+            else if(img[0]=="δ")
+              {
+                wgt = ChatBox(
+                  recieved: !cond,
+                  chatBoxColor: !cond?Colors.white:Color(0xffd1edb7),
+                  doculink: img.substring(1,len),
+                  time: tm,
                 );
               }
             else
@@ -63,6 +75,7 @@ class _MessagesStreamState extends State<MessagesStream> {
                   recieved: !cond,
                   chatBoxColor: !cond?Colors.white:Color(0xffd1edb7),
                   message: data["text"],
+                  time: tm,
                 );
               }
           }
@@ -72,6 +85,7 @@ class _MessagesStreamState extends State<MessagesStream> {
               recieved: !cond,
               chatBoxColor: !cond?Colors.white:Color(0xffd1edb7),
               message: data["text"],
+              time: tm,
             );
           }
 
