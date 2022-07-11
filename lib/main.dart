@@ -6,6 +6,7 @@ import 'package:whatsapp/screens/camerascreen.dart';
 import 'package:whatsapp/screens/chatscreen.dart';
 import 'package:whatsapp/screens/homepage.dart';
 import 'package:whatsapp/screens/phonenumber.dart';
+import 'package:whatsapp/screens/profile.dart';
 import 'package:whatsapp/screens/splashscreen.dart';
 import 'package:whatsapp/screens/welcomescreen.dart';
 import 'package:whatsapp/utilities/constants.dart';
@@ -40,6 +41,7 @@ class _MyAppState extends State<MyApp> {
         SplashScreen.id : (context) => const SplashScreen(),
         WelcomeScreen.id : (context) => const WelcomeScreen(),
         ChatScreen.id : (context) =>  ChatScreen(ph1: "",senderphn: "",),
+        ProfileScreen.id : (context) => const ProfileScreen(),
       },
     );
   }
