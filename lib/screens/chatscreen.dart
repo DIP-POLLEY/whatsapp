@@ -81,8 +81,8 @@ class _ChatScreenState extends State<ChatScreen> {
       if(result.toString() == "") return;
 
       final fileTemp = result?.files.first;
-      print(fileTemp?.path);
-      UploadFilesFirebase(fileTemp,widget.senderphn);
+      //print(fileTemp?.name);
+      UploadFilesFirebase(fileTemp,widget.senderphn,(fileTemp?.name).toString());
 
 
     }on PlatformException catch (e){

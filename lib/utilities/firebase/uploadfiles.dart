@@ -23,10 +23,10 @@ Future Uploadtofirebase(File? image, String number) async
 
 }
 
-Future UploadFilesFirebase(PlatformFile? doc, String number) async{
+Future UploadFilesFirebase(PlatformFile? doc, String number, String name) async{
 
-  final path = 'documents/${doc!.path}';
-  final file = File(doc.path.toString());
+  final path = 'documents/$name';
+  final file = File((doc?.path).toString());
   final ref = FirebaseStorage.instance.ref().child(path);
   UploadTask? uploadTask;
   uploadTask = ref.putFile(file);
