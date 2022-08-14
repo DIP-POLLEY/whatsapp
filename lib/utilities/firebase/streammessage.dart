@@ -45,7 +45,16 @@ class _MessagesStreamState extends State<MessagesStream> {
         String img = data["text"].toString();
         int len = img.length;
         var time = data["timestamp"];
-        String tm = "${time.toDate().hour}:${time.toDate().minute}";
+        String tm;
+        if( time == null)
+          {
+            tm = "${DateTime.now().hour}:${DateTime.now().minute}";
+          }
+        else
+          {
+            tm = "${time.toDate().hour}:${time.toDate().minute}";
+          }
+        //String tm = "${time.toDate().hour}:${time.toDate().minute}";
         // bool imgtxt = img.substring(0,1) == "£";
         Widget wgt;
 
