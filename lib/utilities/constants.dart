@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:camera/camera.dart';
 import 'package:flutter_contacts/contact.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:whatsapp/widgets/chatfeedcard.dart';
 
 late List<CameraDescription> cameras;
@@ -24,3 +25,6 @@ var contactlen;
 
 
 Map<String, dynamic> kNum = {"":""};
+
+Map<dynamic,String> lstcht = {"":""};
+

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:whatsapp/utilities/constants.dart';
 
 import '../screens/chatscreen.dart';
@@ -23,6 +24,27 @@ class ChatFeedCard extends StatefulWidget {
 
 class _ChatFeedCardState extends State<ChatFeedCard> {
 
+  String last = "Last Chat";
+  String time = "12:34";
+
+  void fetchlastchat() async
+  {
+    final prefs = await SharedPreferences.getInstance();
+
+    setState(() {
+      last = prefs.getString(widget.sendernumber)!;
+      time = prefs.getString("${widget.sendernumber}+time")!;
+
+    });
+
+
+
+  }
+
+  @override
+  void initState() {
+    fetchlastchat();
+  }
 
 
   @override
@@ -78,7 +100,7 @@ class _ChatFeedCardState extends State<ChatFeedCard> {
                       Padding(
                         padding:  EdgeInsets.all(4.0),
                         child: Text(
-                          "Last Chat",
+                          last,
                           style: TextStyle(
                               fontWeight: FontWeight.w400,
                               fontSize: 15,
@@ -99,7 +121,7 @@ class _ChatFeedCardState extends State<ChatFeedCard> {
                   Padding(
                     padding: const EdgeInsets.only(top: 20),
                     child: Text(
-                        "8:48 pm"
+                        time
                     ),
                   ),
                   Padding(

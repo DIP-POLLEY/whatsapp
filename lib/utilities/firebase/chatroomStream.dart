@@ -57,7 +57,7 @@ class _getChatgroupState extends State<getChatgroup> {
                         print(i);
                         final wdget = ChatFeedCard(
                             sender: cnkts![i].displayName,
-                          sendernumber: cnkts![i].phones[0].normalizedNumber,
+                          sendernumber: cnkts![i].phones[0].normalizedNumber,// example It will have the contacts number fetched not the users number
 
                         );
                         cardkeeper.add(wdget);

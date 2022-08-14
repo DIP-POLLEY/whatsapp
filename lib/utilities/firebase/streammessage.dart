@@ -2,6 +2,7 @@ import 'package:chatbox/chatbox.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:whatsapp/utilities/constants.dart';
 
 final _firestore = FirebaseFirestore.instance;
@@ -22,6 +23,17 @@ class _MessagesStreamState extends State<MessagesStream> {
     if(_scrollController.hasClients)
     _scrollController.jumpTo(_scrollController.position.maxScrollExtent);
   }
+
+  Future<void> getlastchat (String chat,String colphn,String time) async
+  {
+    final prefs = await SharedPreferences.getInstance();
+    print(colphn);
+    prefs.setString(colphn, chat);
+    prefs.setString("$colphn+time", time);
+
+  }
+
+
   @override
   Widget build(BuildContext context) {
     return StreamBuilder<QuerySnapshot>(
@@ -34,6 +46,8 @@ class _MessagesStreamState extends State<MessagesStream> {
             ),
           );
         }
+
+
 
         WidgetsBinding.instance.addPostFrameCallback((_) => _scrollToBottom());
         return ListView(
@@ -80,6 +94,7 @@ class _MessagesStreamState extends State<MessagesStream> {
               }
             else
               {
+                getlastchat(data["text"],widget.colphn,tm);
                 wgt = ChatBox(
                   recieved: !cond,
                   chatBoxColor: !cond?Colors.white:Color(0xffd1edb7),
@@ -90,6 +105,7 @@ class _MessagesStreamState extends State<MessagesStream> {
           }
         else
           {
+            getlastchat(data["text"],widget.colphn,tm);
             wgt = ChatBox(
               recieved: !cond,
               chatBoxColor: !cond?Colors.white:Color(0xffd1edb7),
