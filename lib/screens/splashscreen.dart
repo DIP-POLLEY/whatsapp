@@ -83,12 +83,11 @@ class _SplashScreenState extends State<SplashScreen> {
     return SafeArea(
         child: Scaffold(
           // ignore: avoid_unnecessary_containers
-          body: Container(
+          body: Align(
+            alignment: Alignment.center,
               // ignore: prefer_const_constructors
-              child: Text(
-                "Splash Screen"
-            ),
-    ),
+              child: Image.asset('assets/loadingslow.gif'),
+          ),
         ),
     );
   }
