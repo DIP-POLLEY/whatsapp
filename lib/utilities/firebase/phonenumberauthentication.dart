@@ -6,6 +6,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:whatsapp/screens/homepage.dart';
+import 'package:whatsapp/screens/profile.dart';
 import 'package:whatsapp/utilities/constants.dart';
 import 'package:whatsapp/utilities/firebase/senddata.dart';
 
@@ -61,11 +62,11 @@ Future verifyCode(String pin, BuildContext context) async{
       if (value.user != null) {
         SharedPreferences preferences1 = await SharedPreferences.getInstance();
         preferences1.setString('mobile', callno);
-        addUsers(callno);
+        //addUsers(callno);
         // ignore: use_build_context_synchronously
         Navigator.pushAndRemoveUntil(
             context,
-            MaterialPageRoute(builder: (context) => const HomePage()),
+            MaterialPageRoute(builder: (context) => const ProfileScreen()),
                 (route) => false);
       }
     });

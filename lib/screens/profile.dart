@@ -1,12 +1,41 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:whatsapp/screens/statusfeed.dart';
 import 'package:whatsapp/utilities/constants.dart';
+import 'dart:io';
+
+import 'homepage.dart';
 
 
 
-class ProfileScreen extends StatelessWidget {
+class ProfileScreen extends StatefulWidget {
   const ProfileScreen({Key? key}) : super(key: key);
   static const String id = 'profile';
+
+  @override
+  State<ProfileScreen> createState() => _ProfileScreenState();
+}
+
+class _ProfileScreenState extends State<ProfileScreen> {
+   File? image;
+
+  Future pickImage(ImageSource source) async
+  {
+    try{
+      final img  = await ImagePicker().pickImage(source: source);
+      if(img == null) return;
+
+      final imageTemp = File(img.path);
+      setState(() { this.image = imageTemp; });
+
+
+
+    }on PlatformException catch (e){
+      print(e);
+    }
+
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -29,23 +58,41 @@ class ProfileScreen extends StatelessWidget {
             ),
 
 
-            Stack(
-              alignment: Alignment.bottomRight,
-              children: [
-                const CircleAvatar(
-                  radius: 80,
-                  backgroundImage: AssetImage("assets/img.png"),
+            GestureDetector(
+              onTap: (){
+                pickImage(ImageSource.camera);
+              },
+              child: Stack(
+                alignment: Alignment.bottomRight,
+                children: [
+                   image==null?CircleAvatar(
+                    radius: 80,
+                    backgroundImage: AssetImage("assets/img.png"),
+                  ):
+                   Container(
+                     height: 100,
+                     width: 100,
+                     child: ClipRRect(
+                       //radius: 80,
+                       borderRadius: BorderRadius.circular(100.0),
+
+                       child: Image.file(
+                      image!,
+                      fit: BoxFit.cover,
                 ),
-                CircleAvatar(
-                  radius: 20,
-                  backgroundColor: kThemecolor,
-                  child: const Icon(
-                    Icons.camera_alt,
-                    size: 20,
-                    color: Colors.white,
                   ),
-                )
-              ],
+                   ),
+                  CircleAvatar(
+                    radius: 20,
+                    backgroundColor: kThemecolor,
+                    child: const Icon(
+                      Icons.camera_alt,
+                      size: 20,
+                      color: Colors.white,
+                    ),
+                  )
+                ],
+              ),
             ),
 
             Column(
@@ -97,12 +144,7 @@ class ProfileScreen extends StatelessWidget {
                 padding: EdgeInsets.symmetric(horizontal: 25, vertical: 15),
               ),
               onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (_) => StatusFeed(),
-                  ),
-                );
+                Navigator.pushReplacementNamed(context, HomePage.id);
               },
             ),
             SizedBox(
