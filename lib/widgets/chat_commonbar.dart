@@ -7,7 +7,8 @@ import '../screens/homepage.dart';
 
 class ChatCommonBar extends StatelessWidget {
   final String chatName;
-  ChatCommonBar({required this.chatName});
+  final String img;
+  ChatCommonBar({required this.chatName,required this.img});
 
   @override
   Widget build(BuildContext context) {
@@ -26,7 +27,7 @@ class ChatCommonBar extends StatelessWidget {
           Padding(
             padding: EdgeInsets.only(right: 10),
             child: CircleAvatar(
-              backgroundImage: AssetImage("assets/img.png"),
+              backgroundImage: NetworkImage(img),
             ),
           ),
           Text("$chatName"),

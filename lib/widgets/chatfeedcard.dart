@@ -59,6 +59,7 @@ class _ChatFeedCardState extends State<ChatFeedCard> {
             builder: (_) => ChatScreen(
               ph1: widget.sender,
               senderphn: widget.sendernumber,
+              img: widget.cnctprofilepic,
 
             ),
           ),

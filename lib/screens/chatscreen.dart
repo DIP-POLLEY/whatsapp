@@ -20,7 +20,8 @@ class ChatScreen extends StatefulWidget {
   static const String id = 'chat';
   final String ph1;
   final String senderphn;
-  ChatScreen({required this.ph1,required this.senderphn});
+  final String img;
+  ChatScreen({required this.ph1,required this.senderphn, required this.img});
 
 
   @override
@@ -105,7 +106,7 @@ class _ChatScreenState extends State<ChatScreen> {
             preferredSize:  Size.fromHeight(
                 MediaQuery.of(context).size.height *1.1/ kTabSize
             ),
-            child: ChatCommonBar(chatName: widget.ph1),
+            child: ChatCommonBar(chatName: widget.ph1, img: widget.img,),
           ),
           body: Column(
             mainAxisAlignment: MainAxisAlignment.end,
