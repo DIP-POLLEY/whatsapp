@@ -51,7 +51,7 @@ class _ChatFeedCardState extends State<ChatFeedCard> {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: (){
-        Navigator.push(
+        Navigator.pushReplacement(
           context,
           MaterialPageRoute(
             builder: (_) => ChatScreen(

@@ -3,6 +3,8 @@
 import 'package:flutter/material.dart';
 import 'package:whatsapp/utilities/constants.dart';
 
+import '../screens/homepage.dart';
+
 class ChatCommonBar extends StatelessWidget {
   final String chatName;
   ChatCommonBar({required this.chatName});
@@ -15,7 +17,8 @@ class ChatCommonBar extends StatelessWidget {
           child: Icon(Icons.arrow_back),
         onTap: ()
         {
-          Navigator.pop(context);
+          //Navigator.pop(context);
+          Navigator.pushReplacementNamed(context, HomePage.id);
         },
       ),
       title: Row(
