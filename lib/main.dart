@@ -41,7 +41,7 @@ class _MyAppState extends State<MyApp> {
         SplashScreen.id : (context) => const SplashScreen(),
         WelcomeScreen.id : (context) => const WelcomeScreen(),
         ChatScreen.id : (context) =>  ChatScreen(ph1: "",senderphn: "",),
-        ProfileScreen.id : (context) => const ProfileScreen(),
+        ProfileScreen.id : (context) => ProfileScreen(profilenum: '',),
       },
     );
   }

@@ -47,18 +47,19 @@ class _getChatgroupState extends State<getChatgroup> {
               var num={};
               num = detl.data()! as Map<String, dynamic>;
 
+
               print(num["Phone_Number"]);
               var s1 = num["Phone_Number"];
               for(var i=0;i<contactlen;i++)
                 {
                   //
-                    if(s1.toString().compareTo(cnkts![i].phones[0].normalizedNumber) == 0)
+                    if(s1.toString().compareTo(cnkts![i].phones[0].normalizedNumber) == 0 && kUser != s1)
                       {
                         print(i);
                         final wdget = ChatFeedCard(
                             sender: cnkts![i].displayName,
-                          sendernumber: cnkts![i].phones[0].normalizedNumber,// example It will have the contacts number fetched not the users number
-
+                            sendernumber: cnkts![i].phones[0].normalizedNumber,// example It will have the contacts number fetched not the users number
+                            cnctprofilepic: num['Profile_Pic'],
                         );
                         cardkeeper.add(wdget);
 

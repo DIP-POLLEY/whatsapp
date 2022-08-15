@@ -1,6 +1,10 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:file_picker/file_picker.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_storage/firebase_storage.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:whatsapp/utilities/constants.dart';
+import 'dart:io';
 
 final _firestore = FirebaseFirestore.instance;
 FirebaseAuth _auth = FirebaseAuth.instance;
@@ -25,12 +29,40 @@ Future<bool> phoneAlready(String Number) async
 
   return documents.length>0;
 }
-void addUsers(String Number) async{
+Future UploadProfileFirebase(File? image, String number, String Name) async{
+
+  final path = 'profilepics/${image!.path}';
+  final file = File(image.path);
+  final ref = FirebaseStorage.instance.ref().child(path);
+  UploadTask? uploadTask;
+  uploadTask = ref.putFile(file);
+
+  SharedPreferences preferences1 = await SharedPreferences.getInstance();
+  preferences1.setString('mobile', number);
+  preferences1.setString('profilename', Name);
+
+  final snapshot = await uploadTask.whenComplete(() {});
+
+  final urlDownload = await snapshot.ref.getDownloadURL();
+  print(urlDownload);
+  preferences1.setString('profilepic', urlDownload);
+  //adddata("£$urlDownload", number);
+  addUsers(number, Name, urlDownload);
+
+}
+
+
+
+void addUsers(String Number,String Name, String profileurl) async{
 
   Map<String,dynamic>data = {};
   data.addAll(
-      {'Phone_Number': Number,
-        'timestamp': FieldValue.serverTimestamp(),}
+      {
+        'Phone_Number': Number,
+        'Profile_Name': Name,
+        'Profile_Pic':profileurl,
+        'timestamp': FieldValue.serverTimestamp(),
+      }
   );
   if(await phoneAlready(Number) == false)
     {
@@ -44,9 +76,11 @@ void addUsers(String Number) async{
 }
 
 
-void Logout()
-{
+Future<void> Logout()
+async {
 
+  SharedPreferences preferences = await SharedPreferences.getInstance();
+  await preferences.clear();
   _auth.signOut();
 
 }

@@ -60,13 +60,15 @@ Future verifyCode(String pin, BuildContext context) async{
         verificationId: _verificationCode, smsCode: pin))
         .then((value) async {
       if (value.user != null) {
-        SharedPreferences preferences1 = await SharedPreferences.getInstance();
-        preferences1.setString('mobile', callno);
+        // SharedPreferences preferences1 = await SharedPreferences.getInstance();
+        // preferences1.setString('mobile', callno);
         //addUsers(callno);
         // ignore: use_build_context_synchronously
         Navigator.pushAndRemoveUntil(
             context,
-            MaterialPageRoute(builder: (context) => const ProfileScreen()),
+            MaterialPageRoute(builder: (context) =>  ProfileScreen(profilenum: callno,
+
+            )),
                 (route) => false);
       }
     });

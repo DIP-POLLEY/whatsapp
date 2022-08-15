@@ -9,6 +9,7 @@ class ChatFeedCard extends StatefulWidget {
   final bool mute;
   final String sender;
   final String sendernumber;
+  final String cnctprofilepic;
 
    // ignore: prefer_const_constructors_in_immutables, use_key_in_widget_constructors
    ChatFeedCard({
@@ -16,6 +17,7 @@ class ChatFeedCard extends StatefulWidget {
      this.mute=false,
      required this.sender,
      required this.sendernumber,
+     required this.cnctprofilepic
   }) ;
 
   @override
@@ -74,7 +76,8 @@ class _ChatFeedCardState extends State<ChatFeedCard> {
                 padding: const EdgeInsets.only(left: 15),
                 child: CircleAvatar(
                   radius: 22,
-                  backgroundImage: AssetImage("assets/img.png"),
+                  backgroundImage: NetworkImage(widget.cnctprofilepic),
+                  //child: Image.network(widget.cnctprofilepic),
                 ),
               )
             ),

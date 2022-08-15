@@ -1,16 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_contacts/flutter_contacts.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:whatsapp/screens/splashscreen.dart';
 import 'package:whatsapp/screens/statusfeed.dart';
 import 'package:whatsapp/utilities/constants.dart';
 import 'dart:io';
 
+import '../utilities/firebase/senddata.dart';
 import 'homepage.dart';
 
 
 
 class ProfileScreen extends StatefulWidget {
-  const ProfileScreen({Key? key}) : super(key: key);
+  ProfileScreen({Key? key, required this.profilenum}) : super(key: key);
+  final String profilenum;
   static const String id = 'profile';
 
   @override
@@ -19,6 +24,9 @@ class ProfileScreen extends StatefulWidget {
 
 class _ProfileScreenState extends State<ProfileScreen> {
    File? image;
+   String name="Enter Name";
+   String profileimgurl="";
+   final TextEditingController _controller = TextEditingController();
 
   Future pickImage(ImageSource source) async
   {
@@ -36,6 +44,29 @@ class _ProfileScreenState extends State<ProfileScreen> {
     }
 
   }
+
+  Future<void> fetchdata()
+   async {
+    //print("vdjvnihdsnvvnjv k knd hvdfv");
+     SharedPreferences preferences1 = await SharedPreferences.getInstance();
+     if(preferences1.getString('profilename')!=null)
+       {
+         setState(() { name = preferences1.getString('profilename')!; });
+         print("name here $name");
+
+       }
+     if(preferences1.getString('profilepic')!=null)
+     {
+
+       setState(() {profileimgurl = preferences1.getString('profilepic')!; });
+       print("name here $profileimgurl");
+     }
+   }
+
+  @override
+   void initState() {
+    fetchdata();
+   }
 
   @override
   Widget build(BuildContext context) {
@@ -65,10 +96,22 @@ class _ProfileScreenState extends State<ProfileScreen> {
               child: Stack(
                 alignment: Alignment.bottomRight,
                 children: [
-                   image==null?CircleAvatar(
-                    radius: 80,
-                    backgroundImage: AssetImage("assets/img.png"),
-                  ):
+                   image==null?
+                   (
+                       profileimgurl==""?CircleAvatar(
+                        radius: 80,
+                        backgroundImage: AssetImage("assets/img.png"),
+                        ):
+                       Container(
+                         height: 100,
+                         width: 100,
+                         child: ClipRRect(
+                           borderRadius: BorderRadius.circular(100.0),
+                           child: Image.network(profileimgurl),
+                         ),
+                       )
+                   )
+                       :
                    Container(
                      height: 100,
                      width: 100,
@@ -103,11 +146,12 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     padding: const EdgeInsets.only(left: 30),
                     child: TextField(
                       cursorColor: kThemecolor,
+                      controller: _controller,
                       decoration: InputDecoration(
-                          hintText: "Enter Name",
+                          hintText: name,
                           border: InputBorder.none
                       ),
-                      // onChanged: (){
+                      // onChanged: (val){
                       //
                       // },
                     ),
@@ -144,7 +188,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 padding: EdgeInsets.symmetric(horizontal: 25, vertical: 15),
               ),
               onPressed: () {
-                Navigator.pushReplacementNamed(context, HomePage.id);
+                UploadProfileFirebase(image,widget.profilenum,_controller.text);
+                Navigator.pushReplacementNamed(context, SplashScreen.id);
               },
             ),
             SizedBox(
