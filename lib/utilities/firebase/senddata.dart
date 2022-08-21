@@ -29,6 +29,14 @@ Future<bool> phoneAlready(String Number) async
 
   return documents.length>0;
 }
+
+Future<bool> StatusAlready(String Number) async
+{
+  final QuerySnapshot result = await _firestore.collection('Status').where('Phone_Number',isEqualTo: Number).get();
+  final List<DocumentSnapshot> documents = result.docs;
+
+  return documents.length>0;
+}
 Future UploadProfileFirebase(File? image, String number, String Name) async{
 
   final path = 'profilepics/${image!.path}';
@@ -75,9 +83,48 @@ void addUsers(String Number,String Name, String profileurl) async{
 
 }
 
+Future UploadProfileStatus(File? image, String number) async{
 
-Future<void> Logout()
-async {
+  final path = 'profilestatus/${image!.path}';
+  final file = File(image.path);
+  final ref = FirebaseStorage.instance.ref().child(path);
+  UploadTask? uploadTask;
+  uploadTask = ref.putFile(file);
+
+  // SharedPreferences preferences1 = await SharedPreferences.getInstance();
+  // preferences1.setString('mobile', number);
+  // preferences1.setString('profilename', Name);
+
+  final snapshot = await uploadTask.whenComplete(() {});
+
+  final urlDownload = await snapshot.ref.getDownloadURL();
+  print(urlDownload);
+  //preferences1.setString('profilepic', urlDownload);
+  //adddata("£$urlDownload", number);
+  addStatus(number, urlDownload);
+
+}
+
+void addStatus(String Number, String statusurl) async {
+  Map<String, dynamic>data = {};
+  data.addAll(
+      {
+        'Phone_Number': Number,
+        'Status': statusurl,
+        'timestamp': FieldValue.serverTimestamp(),
+      }
+  );
+  if (await StatusAlready(Number) == false) {
+    _firestore.collection("Status").doc(Number).set(data);
+  }
+  else {
+    _firestore.collection('Status').doc(Number).update(data);
+  }
+}
+
+
+
+  Future<void> Logout() async {
 
   SharedPreferences preferences = await SharedPreferences.getInstance();
   await preferences.clear();
