@@ -31,12 +31,12 @@ class _StatusFeedState extends State<StatusFeed> {
             ),
             getStatusgroup(),
 
-            Padding(
-              padding: const EdgeInsets.all(12.0),
-              child: Text(
-                  "Viewed updates"
-              ),
-            ),
+            // Padding(
+            //   padding: const EdgeInsets.all(12.0),
+            //   child: Text(
+            //       "Viewed updates"
+            //   ),
+            // ),
             // Statusfeedcard(),
             // Statusfeedcard(),
             // Statusfeedcard(),

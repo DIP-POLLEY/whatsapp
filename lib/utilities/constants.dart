@@ -27,4 +27,4 @@ var contactlen;
 Map<String, dynamic> kNum = {"":""};
 
 Map<dynamic,String> lstcht = {"":""};
-
+String kStatuslink="";

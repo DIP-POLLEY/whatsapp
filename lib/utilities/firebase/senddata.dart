@@ -101,6 +101,7 @@ Future UploadProfileStatus(File? image, String number) async{
   print(urlDownload);
   //preferences1.setString('profilepic', urlDownload);
   //adddata("£$urlDownload", number);
+  kStatuslink=urlDownload;
   addStatus(number, urlDownload);
 
 }
