@@ -4,20 +4,24 @@ import 'package:whatsapp/utilities/constants.dart';
 
 
 class Statusfeedcard extends StatefulWidget {
-  const Statusfeedcard({Key? key}) : super(key: key);
 
+  const Statusfeedcard({Key? key, required this.name, required this.statuslink}) : super(key: key);
+  final String name;
+  final String statuslink;
   @override
   State<Statusfeedcard> createState() => _StatusfeedcardState();
 }
 
 class _StatusfeedcardState extends State<Statusfeedcard> {
+
+
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: ()
       {
           Navigator.push(context,
-          MaterialPageRoute(builder: (context) => Statusview())
+          MaterialPageRoute(builder: (context) => Statusview(statuslink: widget.statuslink,))
           );
       },
       child: Container(
@@ -32,7 +36,7 @@ class _StatusfeedcardState extends State<Statusfeedcard> {
                   padding: const EdgeInsets.only(left: 15),
                   child: CircleAvatar(
                     radius: 22,
-                    backgroundImage: AssetImage("assets/img.png"),
+                    backgroundImage: NetworkImage(widget.statuslink),
                   ),
                 )
             ),
@@ -44,11 +48,11 @@ class _StatusfeedcardState extends State<Statusfeedcard> {
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.start,
                     crossAxisAlignment: CrossAxisAlignment.start,
-                    children: const [
+                    children: [
                       Padding(
                         padding:  EdgeInsets.all(4.0),
                         child: Text(
-                          "Contact Name",
+                          widget.name,
                           style: TextStyle(
                               fontWeight: FontWeight.bold,
                               fontSize: 18

@@ -1,35 +1,40 @@
 import 'package:flutter/material.dart';
 import 'package:story_view/story_view.dart';
 
-class Statusview extends StatelessWidget {
-   Statusview({Key? key}) : super(key: key);
+class Statusview extends StatefulWidget {
+   Statusview({Key? key, required this.statuslink}) : super(key: key);
+    final String statuslink;
+  @override
+  State<Statusview> createState() => _StatusviewState();
+}
 
-
+class _StatusviewState extends State<Statusview> {
   final controller = StoryController();
 
   @override
   Widget build(BuildContext context) {
     List<StoryItem> stories =  [
-      StoryItem.text(
-        title: "fdfssf",
-        backgroundColor: Colors.amberAccent
-      ),
-      StoryItem.text(
-          title: "fdfssf",
-          backgroundColor: Colors.redAccent
-      ),
-      StoryItem.text(
-          title: "fdfssf",
-          backgroundColor: Colors.cyanAccent
-      ),
-      StoryItem.text(
-          title: "fdfssf",
-          backgroundColor: Colors.deepPurple
-      ),
-      StoryItem.text(
-          title: "fdfssf",
-          backgroundColor: Colors.teal
-      ),
+      StoryItem.pageImage(url: widget.statuslink, controller: controller),
+      // StoryItem.text(
+      //   title: "fdfssf",
+      //   backgroundColor: Colors.amberAccent
+      // ),
+      // StoryItem.text(
+      //     title: "fdfssf",
+      //     backgroundColor: Colors.redAccent
+      // ),
+      // StoryItem.text(
+      //     title: "fdfssf",
+      //     backgroundColor: Colors.cyanAccent
+      // ),
+      // StoryItem.text(
+      //     title: "fdfssf",
+      //     backgroundColor: Colors.deepPurple
+      // ),
+      // StoryItem.text(
+      //     title: "fdfssf",
+      //     backgroundColor: Colors.teal
+      // ),
 
 
 

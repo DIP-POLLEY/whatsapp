@@ -3,6 +3,8 @@ import 'package:whatsapp/utilities/constants.dart';
 import 'package:whatsapp/widgets/mystatuscard.dart';
 import 'package:whatsapp/widgets/statusfeedcard.dart';
 
+import '../utilities/firebase/getstatus.dart';
+
 class StatusFeed extends StatefulWidget {
   const StatusFeed({Key? key}) : super(key: key);
 
@@ -27,19 +29,18 @@ class _StatusFeedState extends State<StatusFeed> {
                   "Recent updates"
               ),
             ),
-            Statusfeedcard(),
-            Statusfeedcard(),
-            Statusfeedcard(),
+            getStatusgroup(),
+
             Padding(
               padding: const EdgeInsets.all(12.0),
               child: Text(
                   "Viewed updates"
               ),
             ),
-            Statusfeedcard(),
-            Statusfeedcard(),
-            Statusfeedcard(),
-            Statusfeedcard(),
+            // Statusfeedcard(),
+            // Statusfeedcard(),
+            // Statusfeedcard(),
+            // Statusfeedcard(),
 
 
           ],
