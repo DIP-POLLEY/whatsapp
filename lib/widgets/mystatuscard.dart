@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:whatsapp/utilities/constants.dart';
 
 import '../screens/statusview.dart';
@@ -21,6 +22,7 @@ class Mystatuscard extends StatefulWidget {
 class _MystatuscardState extends State<Mystatuscard> {
 
   File? image;
+  String statusurl="";
 
   Future pickImage(ImageSource source) async
   {
@@ -38,6 +40,24 @@ class _MystatuscardState extends State<Mystatuscard> {
     }
     UploadProfileStatus(image,kUser);
   }
+
+  void getmystatus() async
+  {
+    SharedPreferences preferences = await SharedPreferences.getInstance();
+
+    setState(() { statusurl = preferences.getString("url")!;});
+
+  }
+
+  @override
+  void initState() {
+    //assert(_debugLifecycleState == _StateLifecycle.created);
+    getmystatus();
+  }
+
+
+
+
   @override
   Widget build(BuildContext context) {
     return  Container(
@@ -59,7 +79,7 @@ class _MystatuscardState extends State<Mystatuscard> {
                       },
                       child: CircleAvatar(
                         radius: 22,
-                        backgroundImage: kStatuslink==""?AssetImage("assets/img.png"):NetworkImage(kStatuslink) as ImageProvider,
+                        backgroundImage: statusurl==""?AssetImage("assets/img.png"):NetworkImage(statusurl) as ImageProvider,
                       ),
                     ),
                     CircleAvatar(
@@ -76,15 +96,14 @@ class _MystatuscardState extends State<Mystatuscard> {
               )
           ),
 
-          GestureDetector(
-            // onTap: ()
-            // {
-            //   Navigator.push(context,
-            //       MaterialPageRoute(builder: (context) => Statusview(statuslink: widget.statuslink,))
-            //   );
-            // },
-            child: Expanded(
-                flex: 8,
+          Expanded(
+              flex: 8,
+              child: GestureDetector(
+                onTap:(){
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => Statusview(statuslink: statusurl,))
+                  );
+                },
                 child: Padding(
                   padding: const EdgeInsets.only(left:10,top: 12 ),
                   child: Column(
@@ -114,8 +133,8 @@ class _MystatuscardState extends State<Mystatuscard> {
                       ),
                     ],
                   ),
-                )
-            ),
+                ),
+              )
           ),
 
 
