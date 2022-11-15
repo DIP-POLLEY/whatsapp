@@ -17,6 +17,6 @@ samples, guidance on mobile development, and a full API reference.
 
 ##Interface
 
-<img src="https://user-images.githubusercontent.com/75268931/201902813-fa21d061-01eb-4661-ab27-1ac87ba3a26d.gif" width=400 height=600>
+<img src="https://user-images.githubusercontent.com/75268931/201902813-fa21d061-01eb-4661-ab27-1ac87ba3a26d.gif" width=400 height=800>
 <br>
 
